@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="Git," />
 
 
 
@@ -51,22 +51,61 @@
 
 
 
-<meta name="description" content="索引根据区分度来建立索引
-尽量选择区分度高的列作为索引,区分度的公式是count(distinct col)/count(*)，表示字段不重复的比例
-比例越大我们扫描的记录数越少，唯一键的区分度是1，而一些状态、性别字段可能在大数据面前区分度就是0，">
+<meta name="description" content="需求
+多个开发项目并行
+每个项目提交测试的代码,不可变更,上线也根据此代码包
+代码最终回归到主干,主干和线上代码一致
+每次上线,标记tag
+快速拉取线上分支,修复bug
+
+参考资料
+Git 使用规范流程
+Git分支管理策略
+Git 分支的最佳实践
+
+分支规范
+master 主干,永久且只有1个,一直都是最新的线上代码
+develop-* 开发分支,多个,依照项目而定
+release-* 发布分支,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="索引">
-<meta property="og:url" content="http://blog.com/article/mysql/index.html">
+<meta property="og:title" content="Git分支使用策略">
+<meta property="og:url" content="http://blog.com/article/git/branch-management-strategy.html">
 <meta property="og:site_name" content="槐槐的Blog">
-<meta property="og:description" content="索引根据区分度来建立索引
-尽量选择区分度高的列作为索引,区分度的公式是count(distinct col)/count(*)，表示字段不重复的比例
-比例越大我们扫描的记录数越少，唯一键的区分度是1，而一些状态、性别字段可能在大数据面前区分度就是0，">
-<meta property="og:updated_time" content="2015-11-21T02:37:53.000Z">
+<meta property="og:description" content="需求
+多个开发项目并行
+每个项目提交测试的代码,不可变更,上线也根据此代码包
+代码最终回归到主干,主干和线上代码一致
+每次上线,标记tag
+快速拉取线上分支,修复bug
+
+参考资料
+Git 使用规范流程
+Git分支管理策略
+Git 分支的最佳实践
+
+分支规范
+master 主干,永久且只有1个,一直都是最新的线上代码
+develop-* 开发分支,多个,依照项目而定
+release-* 发布分支,">
+<meta property="og:updated_time" content="2015-12-24T06:32:47.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="索引">
-<meta name="twitter:description" content="索引根据区分度来建立索引
-尽量选择区分度高的列作为索引,区分度的公式是count(distinct col)/count(*)，表示字段不重复的比例
-比例越大我们扫描的记录数越少，唯一键的区分度是1，而一些状态、性别字段可能在大数据面前区分度就是0，">
+<meta name="twitter:title" content="Git分支使用策略">
+<meta name="twitter:description" content="需求
+多个开发项目并行
+每个项目提交测试的代码,不可变更,上线也根据此代码包
+代码最终回归到主干,主干和线上代码一致
+每次上线,标记tag
+快速拉取线上分支,修复bug
+
+参考资料
+Git 使用规范流程
+Git分支管理策略
+Git 分支的最佳实践
+
+分支规范
+master 主干,永久且只有1个,一直都是最新的线上代码
+develop-* 开发分支,多个,依照项目而定
+release-* 发布分支,">
 
 
 
@@ -78,7 +117,7 @@
   };
 </script>
 
-  <title> 索引 | 槐槐的Blog </title>
+  <title> Git分支使用策略 | 槐槐的Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -208,7 +247,7 @@
             
             
               
-                索引
+                Git分支使用策略
               
             
           </h1>
@@ -217,8 +256,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-21T11:32:31+09:00" content="2015-11-21">
-              2015-11-21
+            <time itemprop="dateCreated" datetime="2015-12-23T13:27:40+09:00" content="2015-12-23">
+              2015-12-23
             </time>
           </span>
 
@@ -227,8 +266,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
                   </a>
                 </span>
 
@@ -256,9 +295,90 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="u7D22_u5F15"><a href="#u7D22_u5F15" class="headerlink" title="索引"></a>索引</h1><h2 id="u6839_u636E_u533A_u5206_u5EA6_u6765_u5EFA_u7ACB_u7D22_u5F15"><a href="#u6839_u636E_u533A_u5206_u5EA6_u6765_u5EFA_u7ACB_u7D22_u5F15" class="headerlink" title="根据区分度来建立索引"></a>根据区分度来建立索引</h2><ul>
-<li>尽量选择区分度高的列作为索引,区分度的公式是count(distinct col)/count(*)，表示字段不重复的比例</li>
-<li>比例越大我们扫描的记录数越少，唯一键的区分度是1，而一些状态、性别字段可能在大数据面前区分度就是0，</li>
+        <span itemprop="articleBody"><h1 id="u9700_u6C42"><a href="#u9700_u6C42" class="headerlink" title="需求"></a>需求</h1><ul>
+<li>多个开发项目并行</li>
+<li>每个项目提交测试的代码,不可变更,上线也根据此代码包</li>
+<li>代码最终回归到主干,主干和线上代码一致</li>
+<li>每次上线,标记tag</li>
+<li>快速拉取线上分支,修复bug</li>
+</ul>
+<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2015/08/git-use-process.html" target="_blank" rel="external">Git 使用规范流程</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">Git分支管理策略</a></p>
+<p><a href="http://jiongks.name/blog/a-successful-git-branching-model/" target="_blank" rel="external">Git 分支的最佳实践</a></p>
+</blockquote>
+<h2 id="u5206_u652F_u89C4_u8303"><a href="#u5206_u652F_u89C4_u8303" class="headerlink" title="分支规范"></a>分支规范</h2><ul>
+<li>master 主干,永久且只有1个,一直都是最新的线上代码</li>
+<li>develop-* 开发分支,多个,依照项目而定</li>
+<li>release-* 发布分支,多个,来自develop,用于开发完成后的测试发布包,不允许修改</li>
+<li>feature-* 功能分支,多个,来自develop,功能的拆解,各自开发人员的任务</li>
+<li>fixbug-*  紧急修复bug分支,来自master,0个或1个</li>
+</ul>
+<h2 id="u6D41_u7A0B_u793A_u4F8B"><a href="#u6D41_u7A0B_u793A_u4F8B" class="headerlink" title="流程示例"></a>流程示例</h2><h3 id="u5F00_u53D1_u6D41_u7A0B"><a href="#u5F00_u53D1_u6D41_u7A0B" class="headerlink" title="开发流程"></a>开发流程</h3><ul>
+<li>从master拉取develop-*分支,此次我们拉取一个叫做develop-1.0的分支</li>
+<li>在develop-1.0进行开发,如有多个开发协作,可以从develop-1.0拉取feature分支</li>
+<li>开发完毕后,如有关联的feature分支,需要先合并feature分支,再删除feature分支.</li>
+<li>将develop-1.0分支与master进行合并,再依据develop-1.0拉取release-1.0,将release-1.0交由qa进行测试</li>
+</ul>
+<h3 id="bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B"><a href="#bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B" class="headerlink" title="bug修复开发流程"></a>bug修复开发流程</h3><ul>
+<li>从master拉取fixbug-*分支,此次我们拉取一个叫做fixbug-1.0的分支</li>
+<li>在fixbug-1.0进行开发</li>
+<li>将fixbug-1.0,发给qa进行测试</li>
+<li>测试无误后,将fixbug-1.0进行上线</li>
+<li>上线完毕后<ul>
+<li>fixbug-1.0合入到master</li>
+<li>master标记tag</li>
+<li>删除fixbug-1.0</li>
+<li>若有release分支存活,则需要对应的develop分支重新合并master,重新发布release分支</li>
+</ul>
+</li>
+</ul>
+<h3 id="u6D4B_u8BD5_u6D41_u7A0B"><a href="#u6D4B_u8BD5_u6D41_u7A0B" class="headerlink" title="测试流程"></a>测试流程</h3><ul>
+<li>测试无误,执行上线流程</li>
+<li>测试有误,重新进行开发流程</li>
+</ul>
+<h3 id="u4E0A_u7EBF_u6D41_u7A0B"><a href="#u4E0A_u7EBF_u6D41_u7A0B" class="headerlink" title="上线流程"></a>上线流程</h3><ul>
+<li>将release-1.0上线</li>
+<li>上线完毕后<ul>
+<li>release-1.0合入到master</li>
+<li>master标记tag 1.0</li>
+<li>删除release-1.0分支</li>
+<li>删除branch-1.0分支</li>
+</ul>
+</li>
+</ul>
+<h2 id="u57FA_u7840_u547D_u4EE4"><a href="#u57FA_u7840_u547D_u4EE4" class="headerlink" title="基础命令"></a>基础命令</h2><ul>
+<li><p>查看分支 </p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch</span><br><span class="line"></span> 添加-a选项,可查看远程仓库的分支</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建分支</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch </span>develop-<span class="number">1</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建并切换分支</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="tag">b</span> develop-<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切换分支</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop-<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除分支</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch </span>-d develop-<span class="number">1</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>合并分支</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">merge</span> <span class="comment">--no-ff develop-1.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地分支推送到远程服务器</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">push </span>origin develop-<span class="number">1</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="u5E38_u89C1_u64CD_u4F5C"><a href="#u5E38_u89C1_u64CD_u4F5C" class="headerlink" title="常见操作"></a>常见操作</h2><ul>
+<li><p>提测前,develop合并master的修改</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取远程最新的更改</span><br><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> pull</span><br><span class="line"></span><br><span class="line">合并主干的修改,此处注意diff的出现</span><br><span class="line">git checkout develop-<span class="number">1.0</span></span><br><span class="line">git rebase <span class="literal">master</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>release分支的创建,推送到远程仓库</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-<span class="number">1.0</span><span class="number">.1</span> develop-<span class="number">1.0</span></span><br><span class="line">git push origin release-<span class="number">1.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>release分支上线后,合并到master,推送到远程仓库</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> merge --no-ff release-<span class="number">1.0</span>.<span class="number">1</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">-a</span> v1.<span class="number">0</span> -m <span class="string">"release-1.0.1"</span></span><br><span class="line">git push origin <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> push origin v1.<span class="number">0</span></span><br><span class="line"></span><br><span class="line">git push origin --delete release-<span class="number">1.0</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </span>
       
@@ -268,7 +388,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag">#mysql</a>
+            <a href="/tags/Git/" rel="tag">#Git</a>
           
         </div>
       
@@ -277,17 +397,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/nginx/pass-variable.html" rel="next" title="通过fast-cgi传递参数">
-                <i class="fa fa-chevron-left"></i> 通过fast-cgi传递参数
+              <a href="/article/mysql/standard.html" rel="next" title="mysql 使用规范">
+                <i class="fa fa-chevron-left"></i> mysql 使用规范
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/article/mysql/limit.html" rel="prev" title="长度限制">
-                长度限制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -411,7 +527,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u7D22_u5F15"><span class="nav-number">1.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u6839_u636E_u533A_u5206_u5EA6_u6765_u5EFA_u7ACB_u7D22_u5F15"><span class="nav-number">1.1.</span> <span class="nav-text">根据区分度来建立索引</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u9700_u6C42"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003_u8D44_u6599"><span class="nav-number">1.1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5206_u652F_u89C4_u8303"><span class="nav-number">1.2.</span> <span class="nav-text">分支规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6D41_u7A0B_u793A_u4F8B"><span class="nav-number">1.3.</span> <span class="nav-text">流程示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u53D1_u6D41_u7A0B"><span class="nav-number">1.3.1.</span> <span class="nav-text">开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B"><span class="nav-number">1.3.2.</span> <span class="nav-text">bug修复开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6D4B_u8BD5_u6D41_u7A0B"><span class="nav-number">1.3.3.</span> <span class="nav-text">测试流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E0A_u7EBF_u6D41_u7A0B"><span class="nav-number">1.3.4.</span> <span class="nav-text">上线流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u57FA_u7840_u547D_u4EE4"><span class="nav-number">1.4.</span> <span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5E38_u89C1_u64CD_u4F5C"><span class="nav-number">1.5.</span> <span class="nav-text">常见操作</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
