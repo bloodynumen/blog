@@ -55,7 +55,7 @@
 多个开发项目并行
 每个项目提交测试的代码,不可变更,上线也根据此代码包
 代码最终回归到主干,主干和线上代码一致
-每次上线,标记tag
+每次上线,标记tag,备份留存
 快速拉取线上分支,修复bug
 
 参考资料
@@ -66,7 +66,7 @@ Git 分支的最佳实践
 分支规范分类
 master 主干,永久且只有1个,一直都是最新的线上代码
 develop-* 开发分支,多个,依照项目而定
-release-* 发布分">
+release-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git分支使用策略">
 <meta property="og:url" content="http://blog.com/article/git/branch-management-strategy.html">
@@ -75,7 +75,7 @@ release-* 发布分">
 多个开发项目并行
 每个项目提交测试的代码,不可变更,上线也根据此代码包
 代码最终回归到主干,主干和线上代码一致
-每次上线,标记tag
+每次上线,标记tag,备份留存
 快速拉取线上分支,修复bug
 
 参考资料
@@ -86,15 +86,15 @@ Git 分支的最佳实践
 分支规范分类
 master 主干,永久且只有1个,一直都是最新的线上代码
 develop-* 开发分支,多个,依照项目而定
-release-* 发布分">
-<meta property="og:updated_time" content="2015-12-24T08:11:30.793Z">
+release-">
+<meta property="og:updated_time" content="2015-12-24T08:47:00.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git分支使用策略">
 <meta name="twitter:description" content="需求
 多个开发项目并行
 每个项目提交测试的代码,不可变更,上线也根据此代码包
 代码最终回归到主干,主干和线上代码一致
-每次上线,标记tag
+每次上线,标记tag,备份留存
 快速拉取线上分支,修复bug
 
 参考资料
@@ -105,7 +105,7 @@ Git 分支的最佳实践
 分支规范分类
 master 主干,永久且只有1个,一直都是最新的线上代码
 develop-* 开发分支,多个,依照项目而定
-release-* 发布分">
+release-">
 
 
 
@@ -299,7 +299,7 @@ release-* 发布分">
 <li>多个开发项目并行</li>
 <li>每个项目提交测试的代码,不可变更,上线也根据此代码包</li>
 <li>代码最终回归到主干,主干和线上代码一致</li>
-<li>每次上线,标记tag</li>
+<li>每次上线,标记tag,备份留存</li>
 <li>快速拉取线上分支,修复bug</li>
 </ul>
 <h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
@@ -307,7 +307,7 @@ release-* 发布分">
 <p><a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">Git分支管理策略</a></p>
 <p><a href="http://jiongks.name/blog/a-successful-git-branching-model/" target="_blank" rel="external">Git 分支的最佳实践</a></p>
 </blockquote>
-<h2 id="u5206_u652F_u89C4_u8303"><a href="#u5206_u652F_u89C4_u8303" class="headerlink" title="分支规范"></a>分支规范</h2><h2 id="u5206_u7C7B"><a href="#u5206_u7C7B" class="headerlink" title="分类"></a>分类</h2><ul>
+<h2 id="u5206_u652F_u89C4_u8303"><a href="#u5206_u652F_u89C4_u8303" class="headerlink" title="分支规范"></a>分支规范</h2><h3 id="u5206_u7C7B"><a href="#u5206_u7C7B" class="headerlink" title="分类"></a>分类</h3><ul>
 <li>master 主干,永久且只有1个,一直都是最新的线上代码</li>
 <li>develop-* 开发分支,多个,依照项目而定</li>
 <li>release-* 发布分支,多个,来自develop,用于开发完成后的测试发布包,不允许修改</li>
@@ -315,25 +315,42 @@ release-* 发布分">
 <li>fixbug-*  紧急修复bug分支,来自master,0个或1个</li>
 </ul>
 <h3 id="u547D_u540D"><a href="#u547D_u540D" class="headerlink" title="命名"></a>命名</h3><ul>
-<li>develoop-<em> </em>为项目名称,可附加额外信息再后面,例如日期.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">develop-optimization-<span class="number">20151224</span></span><br></pre></td></tr></table></figure>
+<li><p>develoop-*  星号为项目名称和加额外信息,附加信息可以是日期或是项目版本等.</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">develop</span>-optimization-<span class="number">20151224</span></span><br><span class="line"><span class="label">develop</span>-optimization-<span class="literal">v2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>release-*  星号为项目名称和提测版本,提测版本从1开始</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">release-optimization-<span class="number">1</span></span><br><span class="line">release-optimization-<span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>feature-*  星号建议包含项目+姓名为前缀,因为是个人开发分支,自己分清即可</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">feature-optimization-sunhuai</span><br><span class="line"><span class="operator"><span class="keyword">release</span>-optimization-wanpeng</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fixbug-*  星号为master主版本tag+fix版本号,fix版本号从1开始</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#当前master版本tag为<span class="number">1.0</span></span></span><br><span class="line">fixbug-<span class="number">1.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="master_u7248_u672Ctag_u8BF4_u660E"><a href="#master_u7248_u672Ctag_u8BF4_u660E" class="headerlink" title="master版本tag说明"></a>master版本tag说明</h3><ul>
+<li>两位或三位版本号组成</li>
+<li>第一位代表重大版本更新</li>
+<li>第二位代表项目更新</li>
+<li>第三位如果存在,则代表bug修复<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 初始版本</span></span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="preprocessor"># optimization项目上线后</span></span><br><span class="line"><span class="number">1.1</span></span><br><span class="line"><span class="preprocessor"># 此时发现了一个紧急bug(fixbug-<span class="number">1.1</span><span class="number">.1</span>),修复重新上线后</span></span><br><span class="line"><span class="number">1.1</span><span class="number">.1</span></span><br><span class="line"><span class="preprocessor"># optimization-v2项目上线后</span></span><br><span class="line"><span class="number">1.2</span></span><br><span class="line"><span class="preprocessor"># reset重大版本上线后</span></span><br><span class="line"><span class="number">2.0</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="u6D41_u7A0B_u793A_u4F8B"><a href="#u6D41_u7A0B_u793A_u4F8B" class="headerlink" title="流程示例"></a>流程示例</h2><h3 id="u5F00_u53D1_u6D41_u7A0B"><a href="#u5F00_u53D1_u6D41_u7A0B" class="headerlink" title="开发流程"></a>开发流程</h3><ul>
-<li>从master拉取develop-*分支,此次我们拉取一个叫做develop-1.0的分支</li>
-<li>在develop-1.0进行开发,如有多个开发协作,可以从develop-1.0拉取feature分支</li>
+<li>从master拉取develop-*分支,此次我们拉取一个叫做develop-sample的分支</li>
+<li>在develop-sample进行开发,如有多个开发协作,可以从develop-sample拉取各自的feature分支</li>
 <li>开发完毕后,如有关联的feature分支,需要先合并feature分支,再删除feature分支.</li>
-<li>将develop-1.0分支与master进行合并,再依据develop-1.0拉取release-1.0,将release-1.0交由qa进行测试</li>
+<li>将develop-sample分支与master进行合并,再依据develop-sample拉取release-sample-1,将release-sample-1交由qa进行测试</li>
 </ul>
 <h3 id="bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B"><a href="#bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B" class="headerlink" title="bug修复开发流程"></a>bug修复开发流程</h3><ul>
-<li>从master拉取fixbug-*分支,此次我们拉取一个叫做fixbug-1.0的分支</li>
-<li>在fixbug-1.0进行开发</li>
-<li>将fixbug-1.0,发给qa进行测试</li>
-<li>测试无误后,将fixbug-1.0进行上线</li>
+<li>从master拉取fixbug-*分支,此次我们拉取一个叫做fixbug-1.0.1的分支</li>
+<li>在fixbug-1.0.1进行开发</li>
+<li>将fixbug-1.0.1,发给qa进行测试</li>
+<li>测试无误后,将fixbug-1.0.1进行上线</li>
 <li>上线完毕后<ul>
-<li>fixbug-1.0合入到master</li>
-<li>master标记tag</li>
-<li>删除fixbug-1.0</li>
-<li>若有release分支存活,则需要对应的develop分支重新合并master,重新发布release分支</li>
+<li>fixbug-1.0.1合入到master</li>
+<li>master标记tag 1.0.1</li>
+<li>删除fixbug-1.0.1</li>
+<li>若有release分支存活,则需要对应的develop分支重新合并master,重新发布release分支(主意更新版本号)</li>
 </ul>
 </li>
 </ul>
@@ -342,12 +359,12 @@ release-* 发布分">
 <li>测试有误,重新进行开发流程</li>
 </ul>
 <h3 id="u4E0A_u7EBF_u6D41_u7A0B"><a href="#u4E0A_u7EBF_u6D41_u7A0B" class="headerlink" title="上线流程"></a>上线流程</h3><ul>
-<li>将release-1.0上线</li>
+<li>将release-sample-1上线</li>
 <li>上线完毕后<ul>
-<li>release-1.0合入到master</li>
-<li>master标记tag 1.0</li>
-<li>删除release-1.0分支</li>
-<li>删除branch-1.0分支</li>
+<li>release-sample-1合入到master</li>
+<li>master标记版本tag 1.0</li>
+<li>删除release-sample-1分支</li>
+<li>删除branch-sample分支</li>
 </ul>
 </li>
 </ul>
@@ -356,33 +373,33 @@ release-* 发布分">
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch</span><br><span class="line"></span>添加-a选项,可查看远程仓库的分支</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>新建分支</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch </span>develop-<span class="number">1</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch </span>develop-sample</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>新建并切换分支</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="tag">b</span> develop-<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="tag">b</span> develop-sample</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>切换分支</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop-<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除分支</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch </span>-d develop-<span class="number">1</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -<span class="keyword">d</span> develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>合并分支</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">merge</span> <span class="comment">--no-ff develop-1.1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">merge</span> --<span class="keyword">no</span>-ff develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>本地分支推送到远程服务器</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">push </span>origin develop-<span class="number">1</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">push </span>origin develop-sample</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="u5E38_u89C1_u64CD_u4F5C"><a href="#u5E38_u89C1_u64CD_u4F5C" class="headerlink" title="常见操作"></a>常见操作</h2><ul>
 <li><p>提测前,develop合并master的修改</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取远程最新的更改</span><br><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> pull</span><br><span class="line"></span><br><span class="line">合并主干的修改,此处注意diff的出现</span><br><span class="line">git checkout develop-<span class="number">1.0</span></span><br><span class="line">git rebase <span class="literal">master</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取远程最新的更改</span><br><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> pull</span><br><span class="line"></span><br><span class="line">合并主干的修改,此处注意diff的出现</span><br><span class="line">git checkout develop-sample</span><br><span class="line">git rebase <span class="literal">master</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>release分支的创建,推送到远程仓库</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-<span class="number">1.0</span><span class="number">.1</span> develop-<span class="number">1.0</span></span><br><span class="line">git push origin release-<span class="number">1.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="operator"><span class="keyword">release</span>-<span class="keyword">sample</span>-<span class="number">1</span> develop-<span class="keyword">sample</span></span><br><span class="line">git push origin <span class="keyword">release</span>-<span class="keyword">sample</span>-<span class="number">1</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>release分支上线后,合并到master,推送到远程仓库</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> merge --no-ff release-<span class="number">1.0</span>.<span class="number">1</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">-a</span> v1.<span class="number">0</span> -m <span class="string">"release-1.0.1"</span></span><br><span class="line">git push origin <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> push origin v1.<span class="number">0</span></span><br><span class="line"></span><br><span class="line">git push origin --delete release-<span class="number">1.0</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> merge --no-ff release-sample-<span class="number">1</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">-a</span> <span class="number">1.0</span> -m <span class="string">"release-sample-1"</span></span><br><span class="line">git push origin <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> push origin <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">git push origin --delete release-sample-<span class="number">1</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </span>
@@ -532,7 +549,7 @@ release-* 发布分">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u9700_u6C42"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003_u8D44_u6599"><span class="nav-number">1.1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5206_u652F_u89C4_u8303"><span class="nav-number">1.2.</span> <span class="nav-text">分支规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5206_u7C7B"><span class="nav-number">1.3.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u547D_u540D"><span class="nav-number">1.3.1.</span> <span class="nav-text">命名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6D41_u7A0B_u793A_u4F8B"><span class="nav-number">1.4.</span> <span class="nav-text">流程示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u53D1_u6D41_u7A0B"><span class="nav-number">1.4.1.</span> <span class="nav-text">开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B"><span class="nav-number">1.4.2.</span> <span class="nav-text">bug修复开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6D4B_u8BD5_u6D41_u7A0B"><span class="nav-number">1.4.3.</span> <span class="nav-text">测试流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E0A_u7EBF_u6D41_u7A0B"><span class="nav-number">1.4.4.</span> <span class="nav-text">上线流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6253tag_u89C4_u8303"><span class="nav-number">1.5.</span> <span class="nav-text">打tag规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u57FA_u7840_u547D_u4EE4"><span class="nav-number">1.6.</span> <span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5E38_u89C1_u64CD_u4F5C"><span class="nav-number">1.7.</span> <span class="nav-text">常见操作</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u9700_u6C42"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003_u8D44_u6599"><span class="nav-number">1.1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5206_u652F_u89C4_u8303"><span class="nav-number">1.2.</span> <span class="nav-text">分支规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5206_u7C7B"><span class="nav-number">1.2.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u547D_u540D"><span class="nav-number">1.2.2.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#master_u7248_u672Ctag_u8BF4_u660E"><span class="nav-number">1.2.3.</span> <span class="nav-text">master版本tag说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6D41_u7A0B_u793A_u4F8B"><span class="nav-number">1.3.</span> <span class="nav-text">流程示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F00_u53D1_u6D41_u7A0B"><span class="nav-number">1.3.1.</span> <span class="nav-text">开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B"><span class="nav-number">1.3.2.</span> <span class="nav-text">bug修复开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6D4B_u8BD5_u6D41_u7A0B"><span class="nav-number">1.3.3.</span> <span class="nav-text">测试流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E0A_u7EBF_u6D41_u7A0B"><span class="nav-number">1.3.4.</span> <span class="nav-text">上线流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6253tag_u89C4_u8303"><span class="nav-number">1.4.</span> <span class="nav-text">打tag规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u57FA_u7840_u547D_u4EE4"><span class="nav-number">1.5.</span> <span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5E38_u89C1_u64CD_u4F5C"><span class="nav-number">1.6.</span> <span class="nav-text">常见操作</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
