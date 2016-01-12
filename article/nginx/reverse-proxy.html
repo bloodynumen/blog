@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="nginx,proxy," />
 
 
 
@@ -51,34 +51,22 @@
 
 
 
-<meta name="description" content="对于行的限制
-MySQL要求一个行的定义长度不能超过65535
-超出长度 会提示将某个字段转化为text or blob
+<meta name="description" content="反向代理反向代理
 
-
-字符串类型字段的最大长度还会受到字符集的影响
-text,blob等字段可以脱离此限制 不会将此些字段计入长度">
+在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="长度限制">
-<meta property="og:url" content="http://blog.com/article/mysql/limit.html">
+<meta property="og:title" content="搭建反向代理">
+<meta property="og:url" content="http://blog.com/article/nginx/reverse-proxy.html">
 <meta property="og:site_name" content="斯是陋室-槐槐的Blog">
-<meta property="og:description" content="对于行的限制
-MySQL要求一个行的定义长度不能超过65535
-超出长度 会提示将某个字段转化为text or blob
+<meta property="og:description" content="反向代理反向代理
 
-
-字符串类型字段的最大长度还会受到字符集的影响
-text,blob等字段可以脱离此限制 不会将此些字段计入长度">
-<meta property="og:updated_time" content="2015-11-21T02:39:26.000Z">
+在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。">
+<meta property="og:updated_time" content="2015-12-24T09:28:00.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="长度限制">
-<meta name="twitter:description" content="对于行的限制
-MySQL要求一个行的定义长度不能超过65535
-超出长度 会提示将某个字段转化为text or blob
+<meta name="twitter:title" content="搭建反向代理">
+<meta name="twitter:description" content="反向代理反向代理
 
-
-字符串类型字段的最大长度还会受到字符集的影响
-text,blob等字段可以脱离此限制 不会将此些字段计入长度">
+在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。">
 
 
 
@@ -90,7 +78,7 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
   };
 </script>
 
-  <title> 长度限制 | 斯是陋室-槐槐的Blog </title>
+  <title> 搭建反向代理 | 斯是陋室-槐槐的Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -220,7 +208,7 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
             
             
               
-                长度限制
+                搭建反向代理
               
             
           </h1>
@@ -229,8 +217,8 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-21T10:38:18+08:00" content="2015-11-21">
-              2015-11-21
+            <time itemprop="dateCreated" datetime="2015-12-24T18:24:43+08:00" content="2015-12-24">
+              2015-12-24
             </time>
           </span>
 
@@ -239,8 +227,8 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
                   </a>
                 </span>
 
@@ -268,14 +256,10 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
       
 
       
-        <span itemprop="articleBody"><h1 id="u5BF9_u4E8E_u884C_u7684_u9650_u5236"><a href="#u5BF9_u4E8E_u884C_u7684_u9650_u5236" class="headerlink" title="对于行的限制"></a>对于行的限制</h1><ul>
-<li>MySQL要求一个行的定义长度不能超过65535<ul>
-<li>超出长度 会提示将某个字段转化为text or blob</li>
-</ul>
-</li>
-<li>字符串类型字段的最大长度还会受到字符集的影响</li>
-<li>text,blob等字段可以脱离此限制 不会将此些字段计入长度</li>
-</ul>
+        <span itemprop="articleBody"><h2 id="u53CD_u5411_u4EE3_u7406"><a href="#u53CD_u5411_u4EE3_u7406" class="headerlink" title="反向代理"></a>反向代理</h2><p><a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86" target="_blank" rel="external">反向代理</a></p>
+<blockquote>
+<p>在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。</p>
+</blockquote>
 </span>
       
     </div>
@@ -284,7 +268,9 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag">#mysql</a>
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+            <a href="/tags/proxy/" rel="tag">#proxy</a>
           
         </div>
       
@@ -293,16 +279,16 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/mysql/index.html" rel="next" title="索引">
-                <i class="fa fa-chevron-left"></i> 索引
+              <a href="/article/git/branch-management-strategy.html" rel="next" title="Git分支使用策略">
+                <i class="fa fa-chevron-left"></i> Git分支使用策略
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/mysql/standard.html" rel="prev" title="mysql 使用规范">
-                mysql 使用规范 <i class="fa fa-chevron-right"></i>
+              <a href="/article/nginx/stats-server.html" rel="prev" title="nginx搭建统计服务">
+                nginx搭建统计服务 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -427,7 +413,7 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u5BF9_u4E8E_u884C_u7684_u9650_u5236"><span class="nav-number">1.</span> <span class="nav-text">对于行的限制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u53CD_u5411_u4EE3_u7406"><span class="nav-number">1.</span> <span class="nav-text">反向代理</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

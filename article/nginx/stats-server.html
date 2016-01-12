@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -51,34 +51,25 @@
 
 
 
-<meta name="description" content="对于行的限制
-MySQL要求一个行的定义长度不能超过65535
-超出长度 会提示将某个字段转化为text or blob
-
-
-字符串类型字段的最大长度还会受到字符集的影响
-text,blob等字段可以脱离此限制 不会将此些字段计入长度">
+<meta name="description" content="背景用nginx搭建统计日志服务器,将需要分析处理的数据放在access_log中
+问题无法记录request_body
+原因除非需要否则nginx不主动将request_body解析并传递给后端需要搭建个cgi后端从此点看nginx不做多余的事情,来保证性能
+解决方案搭建proxy 转发给自身主意二次转发后的access_log off">
 <meta property="og:type" content="article">
-<meta property="og:title" content="长度限制">
-<meta property="og:url" content="http://blog.com/article/mysql/limit.html">
+<meta property="og:title" content="nginx搭建统计服务">
+<meta property="og:url" content="http://blog.com/article/nginx/stats-server.html">
 <meta property="og:site_name" content="斯是陋室-槐槐的Blog">
-<meta property="og:description" content="对于行的限制
-MySQL要求一个行的定义长度不能超过65535
-超出长度 会提示将某个字段转化为text or blob
-
-
-字符串类型字段的最大长度还会受到字符集的影响
-text,blob等字段可以脱离此限制 不会将此些字段计入长度">
-<meta property="og:updated_time" content="2015-11-21T02:39:26.000Z">
+<meta property="og:description" content="背景用nginx搭建统计日志服务器,将需要分析处理的数据放在access_log中
+问题无法记录request_body
+原因除非需要否则nginx不主动将request_body解析并传递给后端需要搭建个cgi后端从此点看nginx不做多余的事情,来保证性能
+解决方案搭建proxy 转发给自身主意二次转发后的access_log off">
+<meta property="og:updated_time" content="2016-01-04T08:28:08.143Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="长度限制">
-<meta name="twitter:description" content="对于行的限制
-MySQL要求一个行的定义长度不能超过65535
-超出长度 会提示将某个字段转化为text or blob
-
-
-字符串类型字段的最大长度还会受到字符集的影响
-text,blob等字段可以脱离此限制 不会将此些字段计入长度">
+<meta name="twitter:title" content="nginx搭建统计服务">
+<meta name="twitter:description" content="背景用nginx搭建统计日志服务器,将需要分析处理的数据放在access_log中
+问题无法记录request_body
+原因除非需要否则nginx不主动将request_body解析并传递给后端需要搭建个cgi后端从此点看nginx不做多余的事情,来保证性能
+解决方案搭建proxy 转发给自身主意二次转发后的access_log off">
 
 
 
@@ -90,7 +81,7 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
   };
 </script>
 
-  <title> 长度限制 | 斯是陋室-槐槐的Blog </title>
+  <title> nginx搭建统计服务 | 斯是陋室-槐槐的Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -220,7 +211,7 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
             
             
               
-                长度限制
+                nginx搭建统计服务
               
             
           </h1>
@@ -229,8 +220,8 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-21T10:38:18+08:00" content="2015-11-21">
-              2015-11-21
+            <time itemprop="dateCreated" datetime="2016-01-04T15:34:32+08:00" content="2016-01-04">
+              2016-01-04
             </time>
           </span>
 
@@ -239,8 +230,8 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
                   </a>
                 </span>
 
@@ -268,14 +259,10 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
       
 
       
-        <span itemprop="articleBody"><h1 id="u5BF9_u4E8E_u884C_u7684_u9650_u5236"><a href="#u5BF9_u4E8E_u884C_u7684_u9650_u5236" class="headerlink" title="对于行的限制"></a>对于行的限制</h1><ul>
-<li>MySQL要求一个行的定义长度不能超过65535<ul>
-<li>超出长度 会提示将某个字段转化为text or blob</li>
-</ul>
-</li>
-<li>字符串类型字段的最大长度还会受到字符集的影响</li>
-<li>text,blob等字段可以脱离此限制 不会将此些字段计入长度</li>
-</ul>
+        <span itemprop="articleBody"><h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>用nginx搭建统计日志服务器,将需要分析处理的数据放在access_log中</p>
+<h2 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h2><p>无法记录request_body</p>
+<h2 id="u539F_u56E0"><a href="#u539F_u56E0" class="headerlink" title="原因"></a>原因</h2><p>除非需要否则nginx不主动将request_body解析并传递给后端<br>需要搭建个cgi后端<br>从此点看nginx不做多余的事情,来保证性能</p>
+<h2 id="u89E3_u51B3_u65B9_u6848"><a href="#u89E3_u51B3_u65B9_u6848" class="headerlink" title="解决方案"></a>解决方案</h2><p>搭建proxy 转发给自身<br>主意二次转发后的access_log off</p>
 </span>
       
     </div>
@@ -284,7 +271,7 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag">#mysql</a>
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
           
         </div>
       
@@ -293,17 +280,13 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/mysql/index.html" rel="next" title="索引">
-                <i class="fa fa-chevron-left"></i> 索引
+              <a href="/article/nginx/reverse-proxy.html" rel="next" title="搭建反向代理">
+                <i class="fa fa-chevron-left"></i> 搭建反向代理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/article/mysql/standard.html" rel="prev" title="mysql 使用规范">
-                mysql 使用规范 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -427,7 +410,7 @@ text,blob等字段可以脱离此限制 不会将此些字段计入长度">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u5BF9_u4E8E_u884C_u7684_u9650_u5236"><span class="nav-number">1.</span> <span class="nav-text">对于行的限制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u80CC_u666F"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u95EE_u9898"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u539F_u56E0"><span class="nav-number">3.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u89E3_u51B3_u65B9_u6848"><span class="nav-number">4.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
