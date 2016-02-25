@@ -210,6 +210,227 @@
             
               
                 
+                <a class="post-title-link" href="/article/nginx/nginx_lua.html" itemprop="url">
+                  nginx安装lua环境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-07T18:00:55+08:00" content="2016-02-07">
+              2016-02-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/nginx/nginx_lua.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/nginx_lua.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="nginx_lua__u73AF_u5883_u73AF_u5883"><a href="#nginx_lua__u73AF_u5883_u73AF_u5883" class="headerlink" title="nginx lua 环境环境"></a>nginx lua 环境环境</h2><h3 id="u5B89_u88C5luajit__u7565"><a href="#u5B89_u88C5luajit__u7565" class="headerlink" title="安装luajit 略"></a>安装luajit 略</h3><h3 id="u5B89_u88C5nginx__u7565"><a href="#u5B89_u88C5nginx__u7565" class="headerlink" title="安装nginx 略"></a>安装nginx 略</h3><h3 id="u4E0B_u8F7Dnginx_u76F8_u5173_u7684_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_u76F8_u5173_u7684_u6A21_u5757" class="headerlink" title="下载nginx相关的模块"></a>下载nginx相关的模块</h3><p><a href="http://github.com/simpl/ngx_devel_kit/tags" target="_blank" rel="external">ngx_devel_kit</a><br><a href="http://github.com/chaoslawful/lua-nginx-module/tags" target="_blank" rel="external">lua-nginx-module</a></p>
+<h3 id="u5BFC_u5165_u73AF_u5883_u53D8_u91CF"><a href="#u5BFC_u5165_u73AF_u5883_u53D8_u91CF" class="headerlink" title="导入环境变量"></a>导入环境变量</h3><p>export LUAJIT_LIB=/usr/local/lib<br>export LUAJIT_INC=/usr/local/include/luajit-2.0</p>
+<h3 id="nginx_u6DFB_u52A0_u6A21_u5757"><a href="#nginx_u6DFB_u52A0_u6A21_u5757" class="headerlink" title="nginx添加模块"></a>nginx添加模块</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=<span class="regexp">/webserver/nginx</span> --add-<span class="keyword">module</span>=<span class="regexp">/tmp/ngx</span>_devel_kit-<span class="number">0</span>.<span class="number">2.19</span> --add-<span class="keyword">module</span>=<span class="regexp">/tmp/lua</span>-nginx-<span class="keyword">module</span>-<span class="number">0</span>.<span class="number">9.20</span></span><br></pre></td></tr></table></figure>
+<h3 id="u5B89_u88C5luarocks"><a href="#u5B89_u88C5luarocks" class="headerlink" title="安装luarocks"></a>安装luarocks</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//keplerproject.github.io/luarocks/releases/luarocks-2.2.2.tar.gz</span></span><br><span class="line">cd luarocks-luarocks-<span class="number">2.2</span><span class="number">.2</span></span><br><span class="line">./configure --<span class="keyword">with</span>-lua-bin=<span class="string">"/usr/bin"</span> --<span class="keyword">with</span>-lua-<span class="preprocessor"><span class="keyword">include</span>="/usr/local/<span class="keyword">include</span>/luajit-2.0/"</span><br><span class="line">make build</span><br><span class="line">make install</span><br><span class="line">/usr/local/bin/luarocks install luasocket</span></span><br></pre></td></tr></table></figure>
+<h3 id="nginx_lua__u65E0_u6CD5_u4F7F_u7528_u901A_u8FC7luarocks_u5B89_u88C5_u7684_u5305"><a href="#nginx_lua__u65E0_u6CD5_u4F7F_u7528_u901A_u8FC7luarocks_u5B89_u88C5_u7684_u5305" class="headerlink" title="nginx_lua 无法使用通过luarocks安装的包"></a>nginx_lua 无法使用通过luarocks安装的包</h3><p>通过luarocks安装的包 nginx_lua环境无法直接使用 注意将path加入到lua_package_path中<br>lua_package_path = “/usr/local/share/lua/5.1/?.lua”</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/article/git/useful.html" itemprop="url">
+                  git 非常有用的一些操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-20T10:27:26+08:00" content="2016-01-20">
+              2016-01-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/git/useful.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/git/useful.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="u63D0_u4EA4_u76F8_u5173"><a href="#u63D0_u4EA4_u76F8_u5173" class="headerlink" title="提交相关"></a>提交相关</h2><ul>
+<li>配置push默认提交当前分支<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> config --<span class="preprocessor">global</span> <span class="keyword">push.default </span><span class="string">"current"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="u6062_u590D_u76F8_u5173"><a href="#u6062_u590D_u76F8_u5173" class="headerlink" title="恢复相关"></a>恢复相关</h2><ul>
+<li><p>查看某文件的历史</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> <span class="comment">--follow $&#123;filename&#125;</span><span class="comment"></span><br><span class="line">// --follow 跟随,如果文件被移动,也会显示移动前的记录</span><span class="comment"></span><br><span class="line">// -p 指定文件</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>恢复某文件到某一个版本</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout $&#123;commit&#125; /path/<span class="keyword">to</span>/<span class="type">file</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/article/nginx/stats-server.html" itemprop="url">
                   nginx搭建统计服务
                 </a>
@@ -244,6 +465,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/nginx/stats-server.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/stats-server.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -344,6 +572,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/nginx/reverse-proxy.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/reverse-proxy.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -442,6 +677,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/git/branch-management-strategy.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/git/branch-management-strategy.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -645,6 +887,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/mysql/standard.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/mysql/standard.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -756,6 +1005,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/mysql/limit.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/mysql/limit.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -859,6 +1115,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/mysql/index.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/mysql/index.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -958,6 +1221,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/nginx/pass-variable.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/pass-variable.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1041,21 +1311,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -1134,11 +1404,28 @@
 
   
     
-    
 
   
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bloodynumen"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
 
 
+    
   
 
   

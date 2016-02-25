@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="nginx,proxy," />
+  <meta name="keywords" content="git,useful," />
 
 
 
@@ -51,22 +51,43 @@
 
 
 
-<meta name="description" content="反向代理反向代理
+<meta name="description" content="提交相关
+配置push默认提交当前分支1git config --global push.default &quot;current&quot;
 
-在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。">
+
+恢复相关
+查看某文件的历史
+123git log --follow $&amp;#123;filename&amp;#125;// --follow 跟随,如果文件被移动,也会显示移动前的记录// -p 指定文件
+
+恢复某文件到某一个版本
+1git checkout $&amp;#123;co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建反向代理">
-<meta property="og:url" content="http://blog.com/article/nginx/reverse-proxy.html">
+<meta property="og:title" content="git 非常有用的一些操作">
+<meta property="og:url" content="http://blog.com/article/git/useful.html">
 <meta property="og:site_name" content="斯是陋室-槐槐的Blog">
-<meta property="og:description" content="反向代理反向代理
+<meta property="og:description" content="提交相关
+配置push默认提交当前分支1git config --global push.default &quot;current&quot;
 
-在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。">
-<meta property="og:updated_time" content="2015-12-24T09:28:00.056Z">
+
+恢复相关
+查看某文件的历史
+123git log --follow $&amp;#123;filename&amp;#125;// --follow 跟随,如果文件被移动,也会显示移动前的记录// -p 指定文件
+
+恢复某文件到某一个版本
+1git checkout $&amp;#123;co">
+<meta property="og:updated_time" content="2016-01-20T04:17:15.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建反向代理">
-<meta name="twitter:description" content="反向代理反向代理
+<meta name="twitter:title" content="git 非常有用的一些操作">
+<meta name="twitter:description" content="提交相关
+配置push默认提交当前分支1git config --global push.default &quot;current&quot;
 
-在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。">
+
+恢复相关
+查看某文件的历史
+123git log --follow $&amp;#123;filename&amp;#125;// --follow 跟随,如果文件被移动,也会显示移动前的记录// -p 指定文件
+
+恢复某文件到某一个版本
+1git checkout $&amp;#123;co">
 
 
 
@@ -78,7 +99,7 @@
   };
 </script>
 
-  <title> 搭建反向代理 | 斯是陋室-槐槐的Blog </title>
+  <title> git 非常有用的一些操作 | 斯是陋室-槐槐的Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -208,7 +229,7 @@
             
             
               
-                搭建反向代理
+                git 非常有用的一些操作
               
             
           </h1>
@@ -217,8 +238,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-24T18:24:43+08:00" content="2015-12-24">
-              2015-12-24
+            <time itemprop="dateCreated" datetime="2016-01-20T10:27:26+08:00" content="2016-01-20">
+              2016-01-20
             </time>
           </span>
 
@@ -227,8 +248,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -243,8 +264,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/article/nginx/reverse-proxy.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/reverse-proxy.html" itemprop="commentsCount"></span>
+                <a href="/article/git/useful.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/git/useful.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -263,10 +284,18 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="u53CD_u5411_u4EE3_u7406"><a href="#u53CD_u5411_u4EE3_u7406" class="headerlink" title="反向代理"></a>反向代理</h2><p><a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86" target="_blank" rel="external">反向代理</a></p>
-<blockquote>
-<p>在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。</p>
-</blockquote>
+        <span itemprop="articleBody"><h2 id="u63D0_u4EA4_u76F8_u5173"><a href="#u63D0_u4EA4_u76F8_u5173" class="headerlink" title="提交相关"></a>提交相关</h2><ul>
+<li>配置push默认提交当前分支<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> config --<span class="preprocessor">global</span> <span class="keyword">push.default </span><span class="string">"current"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="u6062_u590D_u76F8_u5173"><a href="#u6062_u590D_u76F8_u5173" class="headerlink" title="恢复相关"></a>恢复相关</h2><ul>
+<li><p>查看某文件的历史</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> <span class="comment">--follow $&#123;filename&#125;</span><span class="comment"></span><br><span class="line">// --follow 跟随,如果文件被移动,也会显示移动前的记录</span><span class="comment"></span><br><span class="line">// -p 指定文件</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>恢复某文件到某一个版本</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout $&#123;commit&#125; /path/<span class="keyword">to</span>/<span class="type">file</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 </span>
       
     </div>
@@ -275,9 +304,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/nginx/" rel="tag">#nginx</a>
+            <a href="/tags/git/" rel="tag">#git</a>
           
-            <a href="/tags/proxy/" rel="tag">#proxy</a>
+            <a href="/tags/useful/" rel="tag">#useful</a>
           
         </div>
       
@@ -286,16 +315,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/git/branch-management-strategy.html" rel="next" title="Git分支使用策略">
-                <i class="fa fa-chevron-left"></i> Git分支使用策略
+              <a href="/article/nginx/stats-server.html" rel="next" title="nginx搭建统计服务">
+                <i class="fa fa-chevron-left"></i> nginx搭建统计服务
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/nginx/stats-server.html" rel="prev" title="nginx搭建统计服务">
-                nginx搭建统计服务 <i class="fa fa-chevron-right"></i>
+              <a href="/article/nginx/nginx_lua.html" rel="prev" title="nginx安装lua环境">
+                nginx安装lua环境 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -323,8 +352,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/nginx/reverse-proxy.html"
-           data-title="搭建反向代理" data-url="http://blog.com/article/nginx/reverse-proxy.html">
+      <div class="ds-thread" data-thread-key="article/git/useful.html"
+           data-title="git 非常有用的一些操作" data-url="http://blog.com/article/git/useful.html">
       </div>
     
   </div>
@@ -424,7 +453,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u53CD_u5411_u4EE3_u7406"><span class="nav-number">1.</span> <span class="nav-text">反向代理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u63D0_u4EA4_u76F8_u5173"><span class="nav-number">1.</span> <span class="nav-text">提交相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6062_u590D_u76F8_u5173"><span class="nav-number">2.</span> <span class="nav-text">恢复相关</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
