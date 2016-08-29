@@ -120,7 +120,7 @@ Git 分支的最佳实践
 master 主干,永久且只有1个,一直都是最新的线上代码
 develop-* 开发分支,多个,依照项目而定
 release-">
-<meta property="og:updated_time" content="2015-12-24T09:07:51.941Z">
+<meta property="og:updated_time" content="2015-12-24T09:07:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git分支使用策略">
 <meta name="twitter:description" content="需求
@@ -378,23 +378,23 @@ release-">
 </ul>
 <h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><ul>
 <li><p>develoop-*  星号为项目名称和加额外信息,附加信息可以是日期或是项目版本等.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">develop-optimization-20151224</span><br><span class="line">develop-optimization-v2</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">develop</span>-optimization-<span class="number">20151224</span></span><br><span class="line"><span class="symbol">develop</span>-optimization-<span class="built_in">v2</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>release-*  星号为项目名称和提测版本,提测版本从1开始</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">release-optimization-1</span><br><span class="line">release-optimization-2</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">release</span>-optimization<span class="number">-1</span></span><br><span class="line"><span class="built_in">release</span>-optimization<span class="number">-2</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>feature-*  星号建议包含项目+姓名为前缀,因为是个人开发分支,自己分清即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">feature-optimization-sunhuai</span><br><span class="line">feature-optimization-wanpeng</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">feature</span>-optimization-sunhuai</span><br><span class="line"><span class="built_in">feature</span>-optimization-wanpeng</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>fixbug-*  星号为master主版本tag+fix版本号,fix版本号从1开始</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#当前master版本tag为1.0</span><br><span class="line">fixbug-1.0.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#当前<span class="selector-tag">master</span>版本<span class="selector-tag">tag</span>为1<span class="selector-class">.0</span></span><br><span class="line"><span class="selector-tag">fixbug-1</span><span class="selector-class">.0</span><span class="selector-class">.1</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="master版本tag说明"><a href="#master版本tag说明" class="headerlink" title="master版本tag说明"></a>master版本tag说明</h3><ul>
 <li>两位或三位版本号组成</li>
 <li>第一位代表重大版本更新</li>
 <li>第二位代表项目更新</li>
-<li>第三位如果存在,则代表bug修复<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 初始版本</span><br><span class="line">1.0</span><br><span class="line"># optimization项目上线后</span><br><span class="line">1.1</span><br><span class="line"># 此时发现了一个紧急bug(fixbug-1.1.1),修复重新上线后</span><br><span class="line">1.1.1</span><br><span class="line"># optimization-v2项目上线后</span><br><span class="line">1.2</span><br><span class="line"># reset重大版本上线后</span><br><span class="line">2.0</span><br></pre></td></tr></table></figure>
+<li>第三位如果存在,则代表bug修复<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 初始版本</span></span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="meta"># optimization项目上线后</span></span><br><span class="line"><span class="number">1.1</span></span><br><span class="line"><span class="meta"># 此时发现了一个紧急bug(fixbug-1.1.1),修复重新上线后</span></span><br><span class="line"><span class="number">1.1</span><span class="number">.1</span></span><br><span class="line"><span class="meta"># optimization-v2项目上线后</span></span><br><span class="line"><span class="number">1.2</span></span><br><span class="line"><span class="meta"># reset重大版本上线后</span></span><br><span class="line"><span class="number">2.0</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="流程示例"><a href="#流程示例" class="headerlink" title="流程示例"></a>流程示例</h2><h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><ul>
@@ -432,36 +432,36 @@ release-">
 </ul>
 <h2 id="打tag规范"><a href="#打tag规范" class="headerlink" title="打tag规范"></a>打tag规范</h2><h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><ul>
 <li><p>查看分支 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">添加-a选项,可查看远程仓库的分支</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">branch</span><br><span class="line"></span>添加-a选项,可查看远程仓库的分支</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>新建分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch develop-sample</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">branch </span>develop-sample</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>新建并切换分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b develop-sample</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="selector-tag">b</span> develop-sample</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>切换分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop-sample</span><br></pre></td></tr></table></figure>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d develop-sample</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">branch </span>-d develop-sample</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>合并分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff develop-sample</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">merge</span> --<span class="keyword">no</span>-ff develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>本地分支推送到远程服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin develop-sample</span><br></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> develop-sample</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><ul>
 <li><p>提测前,develop合并master的修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取远程最新的更改</span><br><span class="line">git checkout master</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">合并主干的修改,此处注意diff的出现</span><br><span class="line">git checkout develop-sample</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取远程最新的更改</span><br><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> pull</span><br><span class="line"></span><br><span class="line">合并主干的修改,此处注意diff的出现</span><br><span class="line">git checkout develop-sample</span><br><span class="line">git rebase <span class="literal">master</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>release分支的创建,推送到远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-sample-1 develop-sample</span><br><span class="line">git push origin release-sample-1</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="keyword">release</span>-<span class="keyword">sample</span><span class="number">-1</span> develop-<span class="keyword">sample</span></span><br><span class="line">git push origin <span class="keyword">release</span>-<span class="keyword">sample</span><span class="number">-1</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>release分支上线后,合并到master,推送到远程仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge --no-ff release-sample-1</span><br><span class="line">git tag -a 1.0 -m &quot;release-sample-1&quot;</span><br><span class="line">git push origin master</span><br><span class="line">git push origin 1.0</span><br><span class="line"></span><br><span class="line">git push origin --delete release-sample-1</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> merge --no-ff release-sample-<span class="number">1</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">-a</span> <span class="number">1.0</span> -m <span class="string">"release-sample-1"</span></span><br><span class="line">git push origin <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> push origin <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">git push origin --delete release-sample-<span class="number">1</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -580,7 +580,7 @@ release-">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -589,7 +589,7 @@ release-">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
