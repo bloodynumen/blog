@@ -1,0 +1,699 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="作为一名PHP(拍黄片)程序员.
+为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.
+深入学习PHP的底层知识，是不可缺少的一环.
+PHP的整体架构设计
+从下往上, 我们把PHP解耦成几层.
+依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx
+Zend Engine负责将代码解析为opcode,并执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP运行原理简介">
+<meta property="og:url" content="http://blog.com/article/php/PHP运行原理.html">
+<meta property="og:site_name" content="斯是陋室-槐槐的Blog">
+<meta property="og:description" content="作为一名PHP(拍黄片)程序员.
+为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.
+深入学习PHP的底层知识，是不可缺少的一环.
+PHP的整体架构设计
+从下往上, 我们把PHP解耦成几层.
+依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx
+Zend Engine负责将代码解析为opcode,并执行">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg">
+<meta property="og:image" content="http://www.cunmou.com/phpbook/image/01fig01.jpg">
+<meta property="og:updated_time" content="2016-08-29T09:03:01.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP运行原理简介">
+<meta name="twitter:description" content="作为一名PHP(拍黄片)程序员.
+为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.
+深入学习PHP的底层知识，是不可缺少的一环.
+PHP的整体架构设计
+从下往上, 我们把PHP解耦成几层.
+依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx
+Zend Engine负责将代码解析为opcode,并执行">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"always","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.com/article/php/PHP运行原理.html"/>
+
+  <title> PHP运行原理简介 | 斯是陋室-槐槐的Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-always page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">斯是陋室-槐槐的Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP运行原理简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T16:58:30+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/php/PHP运行原理.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/php/PHP运行原理.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作为一名PHP(<del>拍黄片</del>)程序员.</p>
+<p>为了在提高自己对于PHP的理解, 让自己的专业技能(<del>拍片</del>)得到提高.</p>
+<p>深入学习PHP的底层知识，是不可缺少的一环.</p>
+<h2 id="PHP的整体架构设计"><a href="#PHP的整体架构设计" class="headerlink" title="PHP的整体架构设计"></a>PHP的整体架构设计</h2><p><img src="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg" alt="架构图"></p>
+<p>从下往上, 我们把PHP解耦成几层.</p>
+<p>依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx</p>
+<h3 id="Zend-Engine"><a href="#Zend-Engine" class="headerlink" title="Zend Engine"></a>Zend Engine</h3><p>负责将代码解析为opcode,并执行.</p>
+<p>这里的opcode指的是Zend虚拟机的指令,而不是cpu操作码.</p>
+<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>分为普通扩展(extension)和zend扩展(zend extension),通过扩展提供了许多内置工具.</p>
+<p>比如array_walk等数组函数,对于redis,memcache的操作等.</p>
+<h3 id="PHP-code"><a href="#PHP-code" class="headerlink" title="PHP code"></a>PHP code</h3><p>我们编写的PHP应用代码,大多数同学天天都在这一层写代码.</p>
+<h3 id="SAPI"><a href="#SAPI" class="headerlink" title="SAPI"></a>SAPI</h3><p>（Server Application Programming Interface： the API used by PHP to interface with Web Servers）</p>
+<p>PHP 通过SAPI 与外部应用进行交互</p>
+<p>SAPI 隔离了外部环境和PHP, 并为内部的PHP提供了统一的接口,使得PHP不受外部影响</p>
+<p>常见的有cli,cgi.</p>
+<h2 id="web环境下PHP的生命周期"><a href="#web环境下PHP的生命周期" class="headerlink" title="web环境下PHP的生命周期"></a>web环境下PHP的生命周期</h2><p>以最常见的web环境举例, 通过一个HTTP请求来分析PHP的生命周期</p>
+<h3 id="php服务启动"><a href="#php服务启动" class="headerlink" title="php服务启动"></a>php服务启动</h3><p><img src="http://www.cunmou.com/phpbook/image/01fig01.jpg" alt="流程图"></p>
+<h4 id="作为服务初始化启动-php-fpm"><a href="#作为服务初始化启动-php-fpm" class="headerlink" title="作为服务初始化启动(php-fpm)"></a>作为服务初始化启动(php-fpm)</h4><ul>
+<li>初始化必要数据,常驻内存</li>
+<li>执行所有扩展的初始化函数MINIT</li>
+<li>等待请求</li>
+</ul>
+<h4 id="作为请求启动"><a href="#作为请求启动" class="headerlink" title="作为请求启动"></a>作为请求启动</h4><ul>
+<li>PHP进程通过sapi获取到请求之后,开启一个新环境,初始化全局变量</li>
+<li>调用所有扩展的请求初始化函数RINIT</li>
+</ul>
+<h4 id="执行PHP代码"><a href="#执行PHP代码" class="headerlink" title="执行PHP代码"></a>执行PHP代码</h4><p>代码示例:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$s</span> = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$s</span>;</span><br></pre></td></tr></table></figure></p>
+<p>代码解析过程:</p>
+<blockquote>
+<p>1.Scanning(Lexing) ,将PHP代码转换为语言片段(Tokens)</p>
+<p>2.Parsing, 将Tokens转换成简单而有意义的表达式</p>
+<p>3.Compilation, 将表达式编译成Opocdes</p>
+<p>4.Execution, 顺次执行Opcodes，每次一条，从而实现PHP脚本的功能。</p>
+</blockquote>
+<h4 id="请求结束"><a href="#请求结束" class="headerlink" title="请求结束"></a>请求结束</h4><ul>
+<li>执行所有扩展的请求结束函数RSHUTDOWN</li>
+<li>释放变量表,内存</li>
+<li>将结果通过cgi sapi返回给nginx</li>
+<li>nginx 返回 http reponse</li>
+</ul>
+<h3 id="服务结束"><a href="#服务结束" class="headerlink" title="服务结束"></a>服务结束</h3><ul>
+<li>执行所有扩展的初始化函数MSHUTDOWN</li>
+<li>释放内存</li>
+</ul>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>以上即为PHP运行原理的简单介绍,如有疏漏以及错误,欢迎大家拍砖.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/git/branch-management-strategy.html" rel="next" title="Git分支使用策略">
+                <i class="fa fa-chevron-left"></i> Git分支使用策略
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/php/PHP运行原理.html" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="article/php/PHP运行原理.html"
+           data-title="PHP运行原理简介" data-url="http://blog.com/article/php/PHP运行原理.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460"
+               alt="Sun Huai" />
+          <p class="site-author-name" itemprop="name">Sun Huai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/bloodynumen" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP的整体架构设计"><span class="nav-number">1.</span> <span class="nav-text">PHP的整体架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zend-Engine"><span class="nav-number">1.1.</span> <span class="nav-text">Zend Engine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extensions"><span class="nav-number">1.2.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-code"><span class="nav-number">1.3.</span> <span class="nav-text">PHP code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAPI"><span class="nav-number">1.4.</span> <span class="nav-text">SAPI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web环境下PHP的生命周期"><span class="nav-number">2.</span> <span class="nav-text">web环境下PHP的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#php服务启动"><span class="nav-number">2.1.</span> <span class="nav-text">php服务启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为服务初始化启动-php-fpm"><span class="nav-number">2.1.1.</span> <span class="nav-text">作为服务初始化启动(php-fpm)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为请求启动"><span class="nav-number">2.1.2.</span> <span class="nav-text">作为请求启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行PHP代码"><span class="nav-number">2.1.3.</span> <span class="nav-text">执行PHP代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求结束"><span class="nav-number">2.1.4.</span> <span class="nav-text">请求结束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务结束"><span class="nav-number">2.2.</span> <span class="nav-text">服务结束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">3.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Huai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bloodynumen"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
