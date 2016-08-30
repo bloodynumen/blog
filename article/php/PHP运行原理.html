@@ -84,33 +84,48 @@
 
 
 
-<meta name="description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.
-了解PHP的底层运行机制，是不可缺少的一环.
+<meta name="description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.了解PHP的底层运行机制，是不可缺少的一环.
 PHP的整体架构设计
-从下往上, 我们把PHP解耦成几层.
-依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx
-Zend Engine负责将代码解析为opcode,并执行.">
+通过该图来看, 从下往上, 我们把PHP解耦成几层.
+
+Zend引擎
+扩展
+php代码
+SAPI
+
+最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.
+Zend Engine负责将代码解析为opco">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP运行原理简介">
 <meta property="og:url" content="http://blog.com/article/php/PHP运行原理.html">
 <meta property="og:site_name" content="斯是陋室-槐槐的Blog">
-<meta property="og:description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.
-了解PHP的底层运行机制，是不可缺少的一环.
+<meta property="og:description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.了解PHP的底层运行机制，是不可缺少的一环.
 PHP的整体架构设计
-从下往上, 我们把PHP解耦成几层.
-依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx
-Zend Engine负责将代码解析为opcode,并执行.">
+通过该图来看, 从下往上, 我们把PHP解耦成几层.
+
+Zend引擎
+扩展
+php代码
+SAPI
+
+最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.
+Zend Engine负责将代码解析为opco">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg">
 <meta property="og:image" content="http://www.cunmou.com/phpbook/image/01fig01.jpg">
-<meta property="og:updated_time" content="2016-08-30T03:49:34.313Z">
+<meta property="og:updated_time" content="2016-08-30T03:52:22.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP运行原理简介">
-<meta name="twitter:description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.
-了解PHP的底层运行机制，是不可缺少的一环.
+<meta name="twitter:description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.了解PHP的底层运行机制，是不可缺少的一环.
 PHP的整体架构设计
-从下往上, 我们把PHP解耦成几层.
-依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx
-Zend Engine负责将代码解析为opcode,并执行.">
+通过该图来看, 从下往上, 我们把PHP解耦成几层.
+
+Zend引擎
+扩展
+php代码
+SAPI
+
+最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.
+Zend Engine负责将代码解析为opco">
 <meta name="twitter:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg">
 
 
@@ -330,20 +345,20 @@ Zend Engine负责将代码解析为opcode,并执行.">
       
 
       
-        <p>作为一名PHP(<del>拍黄片</del>)程序员.<br>为了在提高自己对于PHP的理解, 让自己的专业技能(<del>拍片</del>)得到提高.</p>
-<p>了解PHP的底层运行机制，是不可缺少的一环.</p>
+        <p>作为一名PHP(<del>拍黄片</del>)程序员.<br>为了在提高自己对于PHP的理解, 让自己的专业技能(<del>拍片</del>)得到提高.<br>了解PHP的底层运行机制，是不可缺少的一环.</p>
 <h2 id="PHP的整体架构设计"><a href="#PHP的整体架构设计" class="headerlink" title="PHP的整体架构设计"></a>PHP的整体架构设计</h2><p><img src="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg" alt="架构图"></p>
-<p>从下往上, 我们把PHP解耦成几层.</p>
-<p>依次为Zend引擎,扩展,php代码,SAPI.最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx</p>
-<h3 id="Zend-Engine"><a href="#Zend-Engine" class="headerlink" title="Zend Engine"></a>Zend Engine</h3><p>负责将代码解析为opcode,并执行.</p>
-<p>这里的opcode指的是Zend虚拟机的指令,而不是cpu操作码.</p>
-<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>分为普通扩展(extension)和zend扩展(zend extension),通过扩展提供了许多内置工具.</p>
-<p>比如array_walk等数组函数,对于redis,memcache的操作等.</p>
+<p>通过该图来看, 从下往上, 我们把PHP解耦成几层.</p>
+<ul>
+<li>Zend引擎</li>
+<li>扩展</li>
+<li>php代码</li>
+<li>SAPI</li>
+</ul>
+<p>最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.</p>
+<h3 id="Zend-Engine"><a href="#Zend-Engine" class="headerlink" title="Zend Engine"></a>Zend Engine</h3><p>负责将代码解析为opcode,并执行.<br>这里的opcode指的是Zend虚拟机的指令,而不是cpu操作码.</p>
+<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>分为普通扩展(extension)和zend扩展(zend extension),通过扩展提供了许多内置工具.<br>比如array_walk等数组函数,对于redis,memcache的操作等.</p>
 <h3 id="PHP-code"><a href="#PHP-code" class="headerlink" title="PHP code"></a>PHP code</h3><p>我们编写的PHP应用代码,大多数同学天天都在这一层写代码.</p>
-<h3 id="SAPI"><a href="#SAPI" class="headerlink" title="SAPI"></a>SAPI</h3><p>（Server Application Programming Interface： the API used by PHP to interface with Web Servers）</p>
-<p>PHP 通过SAPI 与外部应用进行交互</p>
-<p>SAPI 隔离了外部环境和PHP, 并为内部的PHP提供了统一的接口,使得PHP不受外部影响</p>
-<p>常见的有cli,cgi.</p>
+<h3 id="SAPI"><a href="#SAPI" class="headerlink" title="SAPI"></a>SAPI</h3><p>（Server Application Programming Interface： the API used by PHP to interface with Web Servers）<br>PHP 通过SAPI 与外部应用进行交互<br>SAPI 隔离了外部环境和PHP, 并为内部的PHP提供了统一的接口,使得PHP不受外部影响<br>常见的有cli,cgi.</p>
 <h2 id="web环境下PHP的生命周期"><a href="#web环境下PHP的生命周期" class="headerlink" title="web环境下PHP的生命周期"></a>web环境下PHP的生命周期</h2><p>以最常见的web环境举例, 通过一个HTTP请求来分析PHP的生命周期</p>
 <h3 id="php服务启动"><a href="#php服务启动" class="headerlink" title="php服务启动"></a>php服务启动</h3><p><img src="http://www.cunmou.com/phpbook/image/01fig01.jpg" alt="流程图"></p>
 <h4 id="作为服务初始化启动-php-fpm"><a href="#作为服务初始化启动-php-fpm" class="headerlink" title="作为服务初始化启动(php-fpm)"></a>作为服务初始化启动(php-fpm)</h4><ul>
