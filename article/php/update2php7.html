@@ -96,7 +96,7 @@ gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data
 PHP7的性能提升tips
 opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.
 gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。接口业务经过性能测试后,发现并没有提升5%这">
-<meta property="og:updated_time" content="2016-08-31T11:59:32.351Z">
+<meta property="og:updated_time" content="2016-08-31T12:06:43.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php7升级之路">
 <meta name="twitter:description" content="为了更高的性能，更低的服务器成本.我们决定将接口业务的php从5.6升级到7.
@@ -329,7 +329,7 @@ gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data
 <li>Hugepage<br>由于是虚拟机,而且内存不高,所以并没有开启<br>如果系统有大量的物理内存（大于8G）,则可以开启,以提升性能.关于Hugepage,可以参考: <a href="http://blog.csdn.net/leshami/article/details/8777639" target="_blank" rel="external">Linux HugePage 特性</a></li>
 </ul>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>第三方扩展是否兼容php7<br><em>　移除了mysql_\</em>相关函数</li>
+<li>第三方扩展是否兼容php7<br><em>　移除了 mysql_\</em> 相关函数</li>
 <li>一定要做完整的功能测试</li>
 </ul>
 <p>迁移细则可见: <a href="http://php.net/manual/zh/migration70.php" target="_blank" rel="external">从PHP 5.6.x 移植到 PHP 7.0.x</a></p>
@@ -338,7 +338,7 @@ gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data
 <blockquote>
 <p>[25-Aug-2016 16:57:33] WARNING: [pool www] child 33056 said into stderr: “/tmp/php-7.0.9/Zend/zend_hash.c(1315) : ht=0x7fd187eb9c60 is being cleaned”</p>
 </blockquote>
-<p>gdb调试之后也没有任何的头绪<br>随后设置断点，从扩展入手。<br>发现是一个ip扩展(monip)引起的问题,替换为其他方式获取ip后，问题得到解决.<br><em>所以一定要注意第三方扩展是否能在php7下正常工作.</em></p>
+<p>gdb调试之后也没有任何的头绪<br>随后设置断点，从扩展入手。<br>发现是一个ip扩展(monip)引起的问题,替换为其他方式获取ip后，问题得到解决.<br><strong>所以一定要注意第三方扩展是否能在php7下正常工作.</strong></p>
 <h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><h3 id="接口性能提升"><a href="#接口性能提升" class="headerlink" title="接口性能提升"></a>接口性能提升</h3><table>
 <thead>
 <tr>
