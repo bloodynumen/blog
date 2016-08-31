@@ -96,7 +96,7 @@ gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data
 PHP7的性能提升tips
 opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.
 gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。接口业务经过性能测试后,发现并没有提升5%这">
-<meta property="og:updated_time" content="2016-08-31T11:43:03.482Z">
+<meta property="og:updated_time" content="2016-08-31T11:48:48.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php7升级之路">
 <meta name="twitter:description" content="为了更高的性能，更低的服务器成本.我们决定将接口业务的php从5.6升级到7.
@@ -267,8 +267,8 @@ gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T16:58:30+08:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2016-08-31T19:48:00+08:00" content="2016-08-31">
+              2016-08-31
             </time>
           </span>
 
@@ -326,7 +326,7 @@ gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data
 <li>opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.</li>
 <li>gcc 4.8以上<br>GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。<br>接口业务经过性能测试后,发现并没有提升5%这么多.</li>
 <li>特定优化pgo, 可以对特定的程序进行优化.<br>注意一定要进行性能测试, 我们的接口服务使用pgo后, 性能反而下降了.</li>
-<li>Hugepage<br>由于是虚拟机,而且内存不高,所以并没有开启<br>如果系统有大量的物理内存（大于8G）,则可以开启,以提升性能.</li>
+<li>Hugepage<br>由于是虚拟机,而且内存不高,所以并没有开启<br>如果系统有大量的物理内存（大于8G）,则可以开启,以提升性能.详细可见!(Linux HugePage 特性)[<a href="http://blog.csdn.net/leshami/article/details/8777639" target="_blank" rel="external">http://blog.csdn.net/leshami/article/details/8777639</a>]</li>
 </ul>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
 <li>第三方扩展是否兼容php7<br><em>　移除了mysql_\</em>相关函数</li>
@@ -403,17 +403,13 @@ gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/git/branch-management-strategy.html" rel="next" title="Git分支使用策略">
-                <i class="fa fa-chevron-left"></i> Git分支使用策略
+              <a href="/article/php/principles-intro.html" rel="next" title="PHP运行原理简介">
+                <i class="fa fa-chevron-left"></i> PHP运行原理简介
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/article/php/principles-intro.html" rel="prev" title="PHP运行原理简介">
-                PHP运行原理简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
