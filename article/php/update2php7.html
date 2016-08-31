@@ -84,49 +84,25 @@
 
 
 
-<meta name="description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.了解PHP的底层运行机制，是不可缺少的一环.
-PHP的整体架构设计
-通过该图来看, 从下往上, 我们把PHP解耦成几层.
-
-Zend引擎
-扩展
-php代码
-SAPI
-
-最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.
-Zend Engine负责将代码解析为opco">
+<meta name="description" content="为了更高的性能，更低的服务器成本.我们决定将接口业务的php从5.6升级到7.
+PHP7的性能提升tips
+opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.
+gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。接口业务经过性能测试后,发现并没有提升5%这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP运行原理简介">
-<meta property="og:url" content="http://blog.com/article/php/principles-intro.html">
+<meta property="og:title" content="php7升级之路">
+<meta property="og:url" content="http://blog.com/article/php/update2php7.html">
 <meta property="og:site_name" content="斯是陋室-槐槐的Blog">
-<meta property="og:description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.了解PHP的底层运行机制，是不可缺少的一环.
-PHP的整体架构设计
-通过该图来看, 从下往上, 我们把PHP解耦成几层.
-
-Zend引擎
-扩展
-php代码
-SAPI
-
-最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.
-Zend Engine负责将代码解析为opco">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg">
-<meta property="og:image" content="http://www.cunmou.com/phpbook/image/01fig01.jpg">
-<meta property="og:updated_time" content="2016-08-30T03:52:22.064Z">
+<meta property="og:description" content="为了更高的性能，更低的服务器成本.我们决定将接口业务的php从5.6升级到7.
+PHP7的性能提升tips
+opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.
+gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。接口业务经过性能测试后,发现并没有提升5%这">
+<meta property="og:updated_time" content="2016-08-31T11:43:03.482Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP运行原理简介">
-<meta name="twitter:description" content="作为一名PHP(拍黄片)程序员.为了在提高自己对于PHP的理解, 让自己的专业技能(拍片)得到提高.了解PHP的底层运行机制，是不可缺少的一环.
-PHP的整体架构设计
-通过该图来看, 从下往上, 我们把PHP解耦成几层.
-
-Zend引擎
-扩展
-php代码
-SAPI
-
-最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.
-Zend Engine负责将代码解析为opco">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg">
+<meta name="twitter:title" content="php7升级之路">
+<meta name="twitter:description" content="为了更高的性能，更低的服务器成本.我们决定将接口业务的php从5.6升级到7.
+PHP7的性能提升tips
+opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.
+gcc 4.8以上GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。接口业务经过性能测试后,发现并没有提升5%这">
 
 
 
@@ -147,9 +123,9 @@ Zend Engine负责将代码解析为opco">
 
 
 
-  <link rel="canonical" href="http://blog.com/article/php/principles-intro.html"/>
+  <link rel="canonical" href="http://blog.com/article/php/update2php7.html"/>
 
-  <title> PHP运行原理简介 | 斯是陋室-槐槐的Blog </title>
+  <title> php7升级之路 | 斯是陋室-槐槐的Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +255,7 @@ Zend Engine负责将代码解析为opco">
             
             
               
-                PHP运行原理简介
+                php7升级之路
               
             
           </h1>
@@ -321,8 +297,8 @@ Zend Engine负责将代码解析为opco">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/article/php/principles-intro.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/php/principles-intro.html" itemprop="commentsCount"></span>
+                <a href="/article/php/update2php7.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/php/update2php7.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,50 +321,58 @@ Zend Engine负责将代码解析为opco">
       
 
       
-        <p>作为一名PHP(<del>拍黄片</del>)程序员.<br>为了在提高自己对于PHP的理解, 让自己的专业技能(<del>拍片</del>)得到提高.<br>了解PHP的底层运行机制，是不可缺少的一环.</p>
-<h2 id="PHP的整体架构设计"><a href="#PHP的整体架构设计" class="headerlink" title="PHP的整体架构设计"></a>PHP的整体架构设计</h2><p><img src="http://ww2.sinaimg.cn/large/7cc829d3gw1exyap8boh7j20ee0ep0tj.jpg" alt="架构图"></p>
-<p>通过该图来看, 从下往上, 我们把PHP解耦成几层.</p>
-<ul>
-<li>Zend引擎</li>
-<li>扩展</li>
-<li>php代码</li>
-<li>SAPI</li>
+        <p>为了更高的性能，更低的服务器成本.<br>我们决定将接口业务的php从5.6升级到7.</p>
+<h2 id="PHP7的性能提升tips"><a href="#PHP7的性能提升tips" class="headerlink" title="PHP7的性能提升tips"></a>PHP7的性能提升tips</h2><ul>
+<li>opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.</li>
+<li>gcc 4.8以上<br>GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。<br>接口业务经过性能测试后,发现并没有提升5%这么多.</li>
+<li>特定优化pgo, 可以对特定的程序进行优化.<br>注意一定要进行性能测试, 我们的接口服务使用pgo后, 性能反而下降了.</li>
+<li>Hugepage<br>由于是虚拟机,而且内存不高,所以并没有开启<br>如果系统有大量的物理内存（大于8G）,则可以开启,以提升性能.</li>
 </ul>
-<p>最上层为通过sapi进行交互的应用,比如apache,lighttpd,nginx.</p>
-<h3 id="Zend-Engine"><a href="#Zend-Engine" class="headerlink" title="Zend Engine"></a>Zend Engine</h3><p>负责将代码解析为opcode,并执行.<br>这里的opcode指的是Zend虚拟机的指令,而不是cpu操作码.</p>
-<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>分为普通扩展(extension)和zend扩展(zend extension),通过扩展提供了许多内置工具.<br>比如array_walk等数组函数,对于redis,memcache的操作等.</p>
-<h3 id="PHP-code"><a href="#PHP-code" class="headerlink" title="PHP code"></a>PHP code</h3><p>我们编写的PHP应用代码,大多数同学天天都在这一层写代码.</p>
-<h3 id="SAPI"><a href="#SAPI" class="headerlink" title="SAPI"></a>SAPI</h3><p>（Server Application Programming Interface： the API used by PHP to interface with Web Servers）<br>PHP 通过SAPI 与外部应用进行交互<br>SAPI 隔离了外部环境和PHP, 并为内部的PHP提供了统一的接口,使得PHP不受外部影响<br>常见的有cli,cgi.</p>
-<h2 id="web环境下PHP的生命周期"><a href="#web环境下PHP的生命周期" class="headerlink" title="web环境下PHP的生命周期"></a>web环境下PHP的生命周期</h2><p>以最常见的web环境举例, 通过一个HTTP请求来分析PHP的生命周期</p>
-<h3 id="php服务启动"><a href="#php服务启动" class="headerlink" title="php服务启动"></a>php服务启动</h3><p><img src="http://www.cunmou.com/phpbook/image/01fig01.jpg" alt="流程图"></p>
-<h4 id="作为服务初始化启动-php-fpm"><a href="#作为服务初始化启动-php-fpm" class="headerlink" title="作为服务初始化启动(php-fpm)"></a>作为服务初始化启动(php-fpm)</h4><ul>
-<li>初始化必要数据,常驻内存</li>
-<li>执行所有扩展的初始化函数MINIT</li>
-<li>等待请求</li>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>第三方扩展是否兼容php7<br><em>　移除了mysql_\</em>相关函数</li>
+<li>一定要做完整的功能测试</li>
 </ul>
-<h4 id="作为请求启动"><a href="#作为请求启动" class="headerlink" title="作为请求启动"></a>作为请求启动</h4><ul>
-<li>PHP进程通过sapi获取到请求之后,开启一个新环境,初始化全局变量</li>
-<li>调用所有扩展的请求初始化函数RINIT</li>
-</ul>
-<h4 id="执行PHP代码"><a href="#执行PHP代码" class="headerlink" title="执行PHP代码"></a>执行PHP代码</h4><p>代码示例:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$s</span> = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$s</span>;</span><br></pre></td></tr></table></figure></p>
-<p>代码解析过程:</p>
+<p>详细可见</p>
 <blockquote>
-<p>1.Scanning(Lexing) ,将PHP代码转换为语言片段(Tokens)</p>
-<p>2.Parsing, 将Tokens转换成简单而有意义的表达式</p>
-<p>3.Compilation, 将表达式编译成Opocdes</p>
-<p>4.Execution, 顺次执行Opcodes，每次一条，从而实现PHP脚本的功能。</p>
+<p>!(从PHP 5.6.x 移植到 PHP 7.0.x)[<a href="http://php.net/manual/zh/migration70.php" target="_blank" rel="external">http://php.net/manual/zh/migration70.php</a>]</p>
 </blockquote>
-<h4 id="请求结束"><a href="#请求结束" class="headerlink" title="请求结束"></a>请求结束</h4><ul>
-<li>执行所有扩展的请求结束函数RSHUTDOWN</li>
-<li>释放变量表,内存</li>
-<li>将结果通过cgi sapi返回给nginx</li>
-<li>nginx 返回 http reponse</li>
-</ul>
-<h3 id="服务结束"><a href="#服务结束" class="headerlink" title="服务结束"></a>服务结束</h3><ul>
-<li>执行所有扩展的初始化函数MSHUTDOWN</li>
-<li>释放内存</li>
-</ul>
-<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>以上即为PHP运行原理的简单介绍,如有疏漏以及错误,欢迎大家拍砖.</p>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑?"></a>坑?</h2><h3 id="PHP7没有坑-没有坑-没有坑"><a href="#PHP7没有坑-没有坑-没有坑" class="headerlink" title="PHP7没有坑,没有坑,没有坑"></a>PHP7没有坑,没有坑,没有坑</h3><h3 id="然而还真踩到了个坑"><a href="#然而还真踩到了个坑" class="headerlink" title="然而还真踩到了个坑"></a>然而还真踩到了个坑</h3><p>某些接口在请求时,会直接提示底层错误,然后结束进程</p>
+<blockquote>
+<p>[25-Aug-2016 16:57:33] WARNING: [pool www] child 33056 said into stderr: “/tmp/php-7.0.9/Zend/zend_hash.c(1315) : ht=0x7fd187eb9c60 is being cleaned”<br>gdb调试之后也没有任何的头绪<br>随后设置断点，从扩展入手。<br>发现是一个ip扩展(monip)引起的问题,替换为其他方式获取ip后，问题得到解决.<br>所以一定要注意第三方扩展是否能在php7下正常工作.</p>
+</blockquote>
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><h3 id="接口性能提升"><a href="#接口性能提升" class="headerlink" title="接口性能提升"></a>接口性能提升</h3><table>
+<thead>
+<tr>
+<th>功能名称</th>
+<th style="text-align:center">php版本</th>
+<th style="text-align:right">qps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上报接口v1</td>
+<td style="text-align:center">5.6</td>
+<td style="text-align:right">5544</td>
+</tr>
+<tr>
+<td>上报接口v1</td>
+<td style="text-align:center">7</td>
+<td style="text-align:right">7309</td>
+</tr>
+<tr>
+<td>上报接口v2</td>
+<td style="text-align:center">5.6</td>
+<td style="text-align:right">3713</td>
+</tr>
+<tr>
+<td>上报接口v2</td>
+<td style="text-align:center">7</td>
+<td style="text-align:right">5240</td>
+</tr>
+</tbody>
+</table>
+<p>上报接口v1提升了32%的性能,上报接口v2提升了41%的性能</p>
+<h3 id="服务器成本降低"><a href="#服务器成本降低" class="headerlink" title="服务器成本降低"></a>服务器成本降低</h3><p>服务器顺利降低配置, 成本降低了1/3</p>
 
       
     </div>
@@ -419,13 +403,17 @@ Zend Engine负责将代码解析为opco">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/php/update2php7.html" rel="next" title="php7升级之路">
-                <i class="fa fa-chevron-left"></i> php7升级之路
+              <a href="/article/git/branch-management-strategy.html" rel="next" title="Git分支使用策略">
+                <i class="fa fa-chevron-left"></i> Git分支使用策略
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/php/principles-intro.html" rel="prev" title="PHP运行原理简介">
+                PHP运行原理简介 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -451,8 +439,8 @@ Zend Engine负责将代码解析为opco">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/php/principles-intro.html"
-           data-title="PHP运行原理简介" data-url="http://blog.com/article/php/principles-intro.html">
+      <div class="ds-thread" data-thread-key="article/php/update2php7.html"
+           data-title="php7升级之路" data-url="http://blog.com/article/php/update2php7.html">
       </div>
     
   </div>
@@ -554,7 +542,7 @@ Zend Engine负责将代码解析为opco">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP的整体架构设计"><span class="nav-number">1.</span> <span class="nav-text">PHP的整体架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zend-Engine"><span class="nav-number">1.1.</span> <span class="nav-text">Zend Engine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extensions"><span class="nav-number">1.2.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-code"><span class="nav-number">1.3.</span> <span class="nav-text">PHP code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAPI"><span class="nav-number">1.4.</span> <span class="nav-text">SAPI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web环境下PHP的生命周期"><span class="nav-number">2.</span> <span class="nav-text">web环境下PHP的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#php服务启动"><span class="nav-number">2.1.</span> <span class="nav-text">php服务启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为服务初始化启动-php-fpm"><span class="nav-number">2.1.1.</span> <span class="nav-text">作为服务初始化启动(php-fpm)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为请求启动"><span class="nav-number">2.1.2.</span> <span class="nav-text">作为请求启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行PHP代码"><span class="nav-number">2.1.3.</span> <span class="nav-text">执行PHP代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求结束"><span class="nav-number">2.1.4.</span> <span class="nav-text">请求结束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务结束"><span class="nav-number">2.2.</span> <span class="nav-text">服务结束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">3.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP7的性能提升tips"><span class="nav-number">1.</span> <span class="nav-text">PHP7的性能提升tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">3.</span> <span class="nav-text">坑?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP7没有坑-没有坑-没有坑"><span class="nav-number">3.1.</span> <span class="nav-text">PHP7没有坑,没有坑,没有坑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然而还真踩到了个坑"><span class="nav-number">3.2.</span> <span class="nav-text">然而还真踩到了个坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成果"><span class="nav-number">4.</span> <span class="nav-text">成果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口性能提升"><span class="nav-number">4.1.</span> <span class="nav-text">接口性能提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器成本降低"><span class="nav-number">4.2.</span> <span class="nav-text">服务器成本降低</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
