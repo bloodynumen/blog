@@ -323,16 +323,13 @@
 <li>opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.</li>
 <li>gcc 4.8以上<br>GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。<br>接口业务经过性能测试后,发现并没有提升5%这么多.</li>
 <li>特定优化pgo, 可以对特定的程序进行优化.<br>注意一定要进行性能测试, 我们的接口服务使用pgo后, 性能反而下降了.</li>
-<li>Hugepage<br>由于是虚拟机,而且内存不高,所以并没有开启<br>如果系统有大量的物理内存（大于8G）,则可以开启,以提升性能.详细可见<img src="http://blog.csdn.net/leshami/article/details/8777639" alt="Linux HugePage 特性"></li>
+<li>Hugepage<br>由于是虚拟机,而且内存不高,所以并没有开启<br>如果系统有大量的物理内存（大于8G）,则可以开启,以提升性能.详细可见<a href="http://blog.csdn.net/leshami/article/details/8777639" target="_blank" rel="external">Linux HugePage 特性</a></li>
 </ul>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
 <li>第三方扩展是否兼容php7<br><em>　移除了mysql_\</em>相关函数</li>
 <li>一定要做完整的功能测试</li>
 </ul>
-<p>详细可见</p>
-<blockquote>
-<p><img src="http://php.net/manual/zh/migration70.php" alt="从PHP 5.6.x 移植到 PHP 7.0.x"></p>
-</blockquote>
+<p>迁移细则可见<a href="http://php.net/manual/zh/migration70.php" target="_blank" rel="external">从PHP 5.6.x 移植到 PHP 7.0.x</a></p>
 <h2 id="坑"><a href="#坑" class="headerlink" title="坑?"></a>坑?</h2><h4 id="PHP7没有坑-没有坑-没有坑"><a href="#PHP7没有坑-没有坑-没有坑" class="headerlink" title="PHP7没有坑,没有坑,没有坑"></a>PHP7没有坑,没有坑,没有坑</h4><p>重要的事情说三遍</p>
 <h4 id="然而还有别的坑"><a href="#然而还有别的坑" class="headerlink" title="然而还有别的坑"></a>然而还有别的坑</h4><p>某些接口在请求时,会直接提示底层错误,然后结束进程</p>
 <blockquote>
