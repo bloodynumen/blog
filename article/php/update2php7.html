@@ -98,7 +98,7 @@
 
 安装
 123456789cd /tmpwget http://cn2.php.net/distributions/php-7.0.9.tar.gztar -zxvf php-7.0.9.tar.gz cd php-7.0.9./configure --prefix=/home/sun/web-ser">
-<meta property="og:updated_time" content="2016-09-02T02:53:18.592Z">
+<meta property="og:updated_time" content="2016-09-02T03:05:39.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php7升级之路">
 <meta name="twitter:description" content="为了更高的性能，更低的服务器成本.我们决定将接口业务的php从5.6升级到7.
@@ -352,6 +352,7 @@
 <p>[25-Aug-2016 16:57:33] WARNING: [pool www] child 33056 said into stderr: “/tmp/php-7.0.9/Zend/zend_hash.c(1315) : ht=0x7fd187eb9c60 is being cleaned”</p>
 </blockquote>
 <p>gdb调试之后也没有任何的头绪<br>随后设置断点，从扩展入手。<br>发现是一个ip扩展(monip)引起的问题,替换为其他方式获取ip后，问题得到解决.<br><strong>所以一定要注意第三方扩展是否能在php7下正常工作.</strong></p>
+<h2 id="额外做的事情"><a href="#额外做的事情" class="headerlink" title="额外做的事情"></a>额外做的事情</h2><p>统一了软件的权限,目录以及配置,便于运维</p>
 <h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><h3 id="接口性能提升"><a href="#接口性能提升" class="headerlink" title="接口性能提升"></a>接口性能提升</h3><table>
 <thead>
 <tr>
@@ -550,7 +551,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级过程"><span class="nav-number">1.</span> <span class="nav-text">升级过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP7的性能提升tips"><span class="nav-number">2.</span> <span class="nav-text">PHP7的性能提升tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">4.</span> <span class="nav-text">坑?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP7没有坑-没有坑-没有坑"><span class="nav-number">4.0.1.</span> <span class="nav-text">PHP7没有坑,没有坑,没有坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然而还有别的坑"><span class="nav-number">4.0.2.</span> <span class="nav-text">然而还有别的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成果"><span class="nav-number">5.</span> <span class="nav-text">成果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口性能提升"><span class="nav-number">5.1.</span> <span class="nav-text">接口性能提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器成本降低"><span class="nav-number">5.2.</span> <span class="nav-text">服务器成本降低</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级过程"><span class="nav-number">1.</span> <span class="nav-text">升级过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP7的性能提升tips"><span class="nav-number">2.</span> <span class="nav-text">PHP7的性能提升tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">4.</span> <span class="nav-text">坑?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP7没有坑-没有坑-没有坑"><span class="nav-number">4.0.1.</span> <span class="nav-text">PHP7没有坑,没有坑,没有坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然而还有别的坑"><span class="nav-number">4.0.2.</span> <span class="nav-text">然而还有别的坑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#额外做的事情"><span class="nav-number">5.</span> <span class="nav-text">额外做的事情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成果"><span class="nav-number">6.</span> <span class="nav-text">成果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口性能提升"><span class="nav-number">6.1.</span> <span class="nav-text">接口性能提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器成本降低"><span class="nav-number">6.2.</span> <span class="nav-text">服务器成本降低</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
