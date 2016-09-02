@@ -98,7 +98,7 @@
 
 安装
 12345678910cd /tmpwget http://cn2.php.net/distributions/php-7.0.9.tar.gztar -zxvf php-7.0.9.tar.gz cd php-7.0.9./configure --prefix=/home/sun/web-s">
-<meta property="og:updated_time" content="2016-09-02T02:45:49.902Z">
+<meta property="og:updated_time" content="2016-09-02T02:51:35.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php7升级之路">
 <meta name="twitter:description" content="为了更高的性能，更低的服务器成本.我们决定将接口业务的php从5.6升级到7.
@@ -330,7 +330,7 @@
 <li><p>安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cd /tmp</span><br><span class="line">wget http://cn2.php.net/distributions/php-7.0.9.tar.gz</span><br><span class="line">tar -zxvf php-7.0.9.tar.gz </span><br><span class="line">cd php-7.0.9</span><br><span class="line"></span><br><span class="line">./configure --prefix=/home/sun/web-server/php --with-config-file-path=/home/sun/web-server/php/etc --enable-mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-iconv --with-zlib --enable-xml --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --enable-mbregex --enable-fpm --enable-mbstring --enable-ftp --enable-gd-native-ttf --with-openssl --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --without-pear --with-gettext --enable-session --with-mcrypt --with-curl --with-jpeg-dir --with-freetype-dir --enable-opcache</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编译依赖扩展</p>
+<li><p>编译依赖扩展<br>注意有一些扩展可能不支持php7</p>
 </li>
 <li>编辑php.ini<br>注意开启opcache</li>
 </ul>
