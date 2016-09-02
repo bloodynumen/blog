@@ -344,7 +344,7 @@
 <blockquote>
 <p>[25-Aug-2016 16:57:33] WARNING: [pool www] child 33056 said into stderr: “/tmp/php-7.0.9/Zend/zend_hash.c(1315) : ht=0x7fd187eb9c60 is being cleaned”</p>
 </blockquote>
-<p>gdb调试之后也没有任何的头绪<br>随后设置断点，从扩展入手。<br>发现是一个ip扩展(monip)引起的问题,替换为其他方式获取ip后，问题得到解决.<br><strong>所以一定要注意第三方扩展是否能在php7下正常工作.</strong></p>
+<p>gdb调试之后也没有任何的头绪<br>随后设置断点，从扩展入手。<br>发现是一个ip扩展(monip)引起的问题,替换为其他方式获取ip后，问题得到解决.<br><em>所以一定要注意第三方扩展是否能在php7下正常工作.</em></p>
 <h2 id="额外做的事情"><a href="#额外做的事情" class="headerlink" title="额外做的事情"></a>额外做的事情</h2><p>统一了软件的权限,目录以及配置,便于运维</p>
 <h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><h3 id="接口性能提升"><a href="#接口性能提升" class="headerlink" title="接口性能提升"></a>接口性能提升</h3><table>
 <thead>
