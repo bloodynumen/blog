@@ -187,6 +187,15 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
 
     
       
@@ -210,8 +219,8 @@
             
               
                 
-                <a class="post-title-link" href="/article/nginx/nginx_lua.html" itemprop="url">
-                  nginx安装lua环境
+                <a class="post-title-link" href="/article/php/update2php7.html" itemprop="url">
+                  php7升级之路
                 </a>
               
             
@@ -221,8 +230,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-02-07T18:00:55+08:00" content="2016-02-07">
-              2016-02-07
+            <time itemprop="dateCreated" datetime="2016-08-31T19:48:00+08:00" content="2016-08-31">
+              2016-08-31
             </time>
           </span>
 
@@ -231,8 +240,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
                   </a>
                 </span>
 
@@ -244,13 +253,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/nginx/nginx_lua.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/nginx_lua.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -270,984 +272,67 @@
         
           <span itemprop="articleBody">
             
-              <h2 id="nginx_lua__u73AF_u5883_u73AF_u5883"><a href="#nginx_lua__u73AF_u5883_u73AF_u5883" class="headerlink" title="nginx lua 环境环境"></a>nginx lua 环境环境</h2><h3 id="u5B89_u88C5luajit__u7565"><a href="#u5B89_u88C5luajit__u7565" class="headerlink" title="安装luajit 略"></a>安装luajit 略</h3><h3 id="u5B89_u88C5nginx__u7565"><a href="#u5B89_u88C5nginx__u7565" class="headerlink" title="安装nginx 略"></a>安装nginx 略</h3><h3 id="u4E0B_u8F7Dnginx_u76F8_u5173_u7684_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_u76F8_u5173_u7684_u6A21_u5757" class="headerlink" title="下载nginx相关的模块"></a>下载nginx相关的模块</h3><p><a href="http://github.com/simpl/ngx_devel_kit/tags" target="_blank" rel="external">ngx_devel_kit</a><br><a href="http://github.com/chaoslawful/lua-nginx-module/tags" target="_blank" rel="external">lua-nginx-module</a></p>
-<h3 id="u5BFC_u5165_u73AF_u5883_u53D8_u91CF"><a href="#u5BFC_u5165_u73AF_u5883_u53D8_u91CF" class="headerlink" title="导入环境变量"></a>导入环境变量</h3><p>export LUAJIT_LIB=/usr/local/lib<br>export LUAJIT_INC=/usr/local/include/luajit-2.0</p>
-<h3 id="nginx_u6DFB_u52A0_u6A21_u5757"><a href="#nginx_u6DFB_u52A0_u6A21_u5757" class="headerlink" title="nginx添加模块"></a>nginx添加模块</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=<span class="regexp">/webserver/nginx</span> --add-<span class="keyword">module</span>=<span class="regexp">/tmp/ngx</span>_devel_kit-<span class="number">0</span>.<span class="number">2.19</span> --add-<span class="keyword">module</span>=<span class="regexp">/tmp/lua</span>-nginx-<span class="keyword">module</span>-<span class="number">0</span>.<span class="number">9.20</span></span><br></pre></td></tr></table></figure>
-<h3 id="u5B89_u88C5luarocks"><a href="#u5B89_u88C5luarocks" class="headerlink" title="安装luarocks"></a>安装luarocks</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//keplerproject.github.io/luarocks/releases/luarocks-2.2.2.tar.gz</span></span><br><span class="line">cd luarocks-luarocks-<span class="number">2.2</span><span class="number">.2</span></span><br><span class="line">./configure --<span class="keyword">with</span>-lua-bin=<span class="string">"/usr/bin"</span> --<span class="keyword">with</span>-lua-<span class="preprocessor"><span class="keyword">include</span>="/usr/local/<span class="keyword">include</span>/luajit-2.0/"</span><br><span class="line">make build</span><br><span class="line">make install</span><br><span class="line">/usr/local/bin/luarocks install luasocket</span></span><br></pre></td></tr></table></figure>
-<h3 id="nginx_lua__u65E0_u6CD5_u4F7F_u7528_u901A_u8FC7luarocks_u5B89_u88C5_u7684_u5305"><a href="#nginx_lua__u65E0_u6CD5_u4F7F_u7528_u901A_u8FC7luarocks_u5B89_u88C5_u7684_u5305" class="headerlink" title="nginx_lua 无法使用通过luarocks安装的包"></a>nginx_lua 无法使用通过luarocks安装的包</h3><p>通过luarocks安装的包 nginx_lua环境无法直接使用 注意将path加入到lua_package_path中<br>lua_package_path = “/usr/local/share/lua/5.1/?.lua”</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/git/useful.html" itemprop="url">
-                  git 非常有用的一些操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-20T10:27:26+08:00" content="2016-01-20">
-              2016-01-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/git/useful.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/git/useful.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h2 id="u63D0_u4EA4_u76F8_u5173"><a href="#u63D0_u4EA4_u76F8_u5173" class="headerlink" title="提交相关"></a>提交相关</h2><ul>
-<li>配置push默认提交当前分支<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> config --<span class="preprocessor">global</span> <span class="keyword">push.default </span><span class="string">"current"</span></span><br></pre></td></tr></table></figure>
+              <p>为了更高的性能，更低的服务器成本.<br>我们决定将接口业务的php从5.6升级到7.</p>
+<h2 id="升级过程">升级过程</h2><p>灰常简单</p>
+<ul>
+<li><p>安装</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp&#10;wget http://cn2.php.net/distributions/php-7.0.9.tar.gz&#10;tar -zxvf php-7.0.9.tar.gz &#10;cd php-7.0.9&#10;&#10;./configure --prefix=/home/sun/web-server/php --with-config-file-path=/home/sun/web-server/php/etc --enable-mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-iconv --with-zlib --enable-xml --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --enable-mbregex --enable-fpm --enable-mbstring --enable-ftp --enable-gd-native-ttf --with-openssl --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --without-pear --with-gettext --enable-session --with-mcrypt --with-curl --with-jpeg-dir --with-freetype-dir --enable-opcache&#10;&#10;make&#10;make install</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>编译依赖扩展<br>注意有一些扩展可能不支持php7</p>
+</li>
+<li>编辑php.ini<br>注意开启opcache</li>
 </ul>
-<h2 id="u6062_u590D_u76F8_u5173"><a href="#u6062_u590D_u76F8_u5173" class="headerlink" title="恢复相关"></a>恢复相关</h2><ul>
-<li><p>查看某文件的历史</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> <span class="comment">--follow $&#123;filename&#125;</span><span class="comment"></span><br><span class="line">// --follow 跟随,如果文件被移动,也会显示移动前的记录</span><span class="comment"></span><br><span class="line">// -p 指定文件</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>恢复某文件到某一个版本</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout $&#123;commit&#125; /path/<span class="keyword">to</span>/<span class="type">file</span></span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="PHP7的性能提升tips">PHP7的性能提升tips</h2><ul>
+<li>opcache.file_cache 将opcode缓存到外部文件中,对一些脚本会有明显的性能提升.</li>
+<li>gcc 4.8以上<br>GCC 4.8版以上才會开启Global Register對opline和execute_data的支援，有助于提高5％的效能。<br>接口业务经过性能测试后,发现并没有提升5%这么多.</li>
+<li>特定优化pgo, 可以对特定的程序进行优化.<br>注意一定要进行性能测试, 我们的接口服务使用pgo后, 性能反而下降了.</li>
+<li>Hugepage<br>由于是虚拟机,而且内存不高,所以并没有开启<br>如果系统有大量的物理内存（大于8G）,则可以开启,以提升性能.关于Hugepage,可以参考: <a href="http://blog.csdn.net/leshami/article/details/8777639" target="_blank" rel="external">Linux HugePage 特性</a></li>
 </ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/nginx/stats-server.html" itemprop="url">
-                  nginx搭建统计服务
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-04T15:34:32+08:00" content="2016-01-04">
-              2016-01-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/nginx/stats-server.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/stats-server.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>用nginx搭建统计日志服务器,将需要分析处理的数据放在access_log中</p>
-<h2 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h2><p>无法记录request_body</p>
-<h2 id="u539F_u56E0"><a href="#u539F_u56E0" class="headerlink" title="原因"></a>原因</h2><p>除非需要否则nginx不主动将request_body解析并传递给后端<br>需要搭建个cgi后端<br>从此点看nginx不做多余的事情,来保证性能</p>
-<h2 id="u89E3_u51B3_u65B9_u6848"><a href="#u89E3_u51B3_u65B9_u6848" class="headerlink" title="解决方案"></a>解决方案</h2><p>搭建proxy 转发给自身<br>主意二次转发后的access_log off</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/nginx/reverse-proxy.html" itemprop="url">
-                  搭建反向代理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-24T18:24:43+08:00" content="2015-12-24">
-              2015-12-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/nginx/reverse-proxy.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/reverse-proxy.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h2 id="u53CD_u5411_u4EE3_u7406"><a href="#u53CD_u5411_u4EE3_u7406" class="headerlink" title="反向代理"></a>反向代理</h2><p><a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86" target="_blank" rel="external">反向代理</a></p>
+<h2 id="注意事项">注意事项</h2><ul>
+<li>第三方扩展是否兼容php7</li>
+<li>移除了mysql_*相关函数</li>
+<li>一定要做完整的功能测试<br>迁移细则可见: <a href="http://php.net/manual/zh/migration70.php" target="_blank" rel="external">从PHP 5.6.x 移植到 PHP 7.0.x</a></li>
+</ul>
+<h2 id="坑?">坑?</h2><h4 id="PHP7没有坑,没有坑,没有坑">PHP7没有坑,没有坑,没有坑</h4><p>重要的事情说三遍</p>
+<h4 id="然而还有别的坑">然而还有别的坑</h4><p>在功能测试时, 发现某些接口会出现崩溃并重启进程的问题, php-fpm.log如下: </p>
 <blockquote>
-<p>在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。[1]与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。</p>
+<p>[25-Aug-2016 16:57:33] WARNING: [pool www] child 33056 said into stderr: “/tmp/php-7.0.9/Zend/zend_hash.c(1315) : ht=0x7fd187eb9c60 is being cleaned”</p>
 </blockquote>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/git/branch-management-strategy.html" itemprop="url">
-                  Git分支使用策略
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-23T13:27:40+08:00" content="2015-12-23">
-              2015-12-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/git/branch-management-strategy.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/git/branch-management-strategy.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="u9700_u6C42"><a href="#u9700_u6C42" class="headerlink" title="需求"></a>需求</h1><ul>
-<li>多个开发项目并行</li>
-<li>每个项目提交测试的代码,不可变更,上线也根据此代码包</li>
-<li>代码最终回归到主干,主干和线上代码一致</li>
-<li>每次上线,标记tag,备份留存</li>
-<li>快速拉取线上分支,修复bug</li>
-</ul>
-<h2 id="u53C2_u8003_u8D44_u6599"><a href="#u53C2_u8003_u8D44_u6599" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2015/08/git-use-process.html" target="_blank" rel="external">Git 使用规范流程</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">Git分支管理策略</a></p>
-<p><a href="http://jiongks.name/blog/a-successful-git-branching-model/" target="_blank" rel="external">Git 分支的最佳实践</a></p>
-</blockquote>
-<h2 id="u5206_u652F_u89C4_u8303"><a href="#u5206_u652F_u89C4_u8303" class="headerlink" title="分支规范"></a>分支规范</h2><h3 id="u5206_u7C7B"><a href="#u5206_u7C7B" class="headerlink" title="分类"></a>分类</h3><ul>
-<li>master 主干,永久且只有1个,一直都是最新的线上代码</li>
-<li>develop-* 开发分支,多个,依照项目而定</li>
-<li>release-* 发布分支,多个,来自develop,用于开发完成后的测试发布包,不允许修改</li>
-<li>feature-* 功能分支,多个,来自develop,功能的拆解,各自开发人员的任务</li>
-<li>fixbug-*  紧急修复bug分支,来自master,0个或1个</li>
-</ul>
-<h3 id="u547D_u540D"><a href="#u547D_u540D" class="headerlink" title="命名"></a>命名</h3><ul>
-<li><p>develoop-*  星号为项目名称和加额外信息,附加信息可以是日期或是项目版本等.</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">develop</span>-optimization-<span class="number">20151224</span></span><br><span class="line"><span class="label">develop</span>-optimization-<span class="literal">v2</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>release-*  星号为项目名称和提测版本,提测版本从1开始</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">release-optimization-<span class="number">1</span></span><br><span class="line">release-optimization-<span class="number">2</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>feature-*  星号建议包含项目+姓名为前缀,因为是个人开发分支,自己分清即可</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">feature-optimization-sunhuai</span><br><span class="line">feature-optimization-wanpeng</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>fixbug-*  星号为master主版本tag+fix版本号,fix版本号从1开始</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#当前master版本tag为<span class="number">1.0</span></span></span><br><span class="line">fixbug-<span class="number">1.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="master_u7248_u672Ctag_u8BF4_u660E"><a href="#master_u7248_u672Ctag_u8BF4_u660E" class="headerlink" title="master版本tag说明"></a>master版本tag说明</h3><ul>
-<li>两位或三位版本号组成</li>
-<li>第一位代表重大版本更新</li>
-<li>第二位代表项目更新</li>
-<li>第三位如果存在,则代表bug修复<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 初始版本</span></span><br><span class="line"><span class="number">1.0</span></span><br><span class="line"><span class="preprocessor"># optimization项目上线后</span></span><br><span class="line"><span class="number">1.1</span></span><br><span class="line"><span class="preprocessor"># 此时发现了一个紧急bug(fixbug-<span class="number">1.1</span><span class="number">.1</span>),修复重新上线后</span></span><br><span class="line"><span class="number">1.1</span><span class="number">.1</span></span><br><span class="line"><span class="preprocessor"># optimization-v2项目上线后</span></span><br><span class="line"><span class="number">1.2</span></span><br><span class="line"><span class="preprocessor"># reset重大版本上线后</span></span><br><span class="line"><span class="number">2.0</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="u6D41_u7A0B_u793A_u4F8B"><a href="#u6D41_u7A0B_u793A_u4F8B" class="headerlink" title="流程示例"></a>流程示例</h2><h3 id="u5F00_u53D1_u6D41_u7A0B"><a href="#u5F00_u53D1_u6D41_u7A0B" class="headerlink" title="开发流程"></a>开发流程</h3><ul>
-<li>从master拉取develop-*分支,此次我们拉取一个叫做develop-sample的分支</li>
-<li>在develop-sample进行开发,如有多个开发协作,可以从develop-sample拉取各自的feature分支</li>
-<li>开发完毕后,如有关联的feature分支,需要先合并feature分支,再删除feature分支.</li>
-<li>将develop-sample分支与master进行合并,再依据develop-sample拉取release-sample-1,将release-sample-1交由qa进行测试</li>
-</ul>
-<h3 id="bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B"><a href="#bug_u4FEE_u590D_u5F00_u53D1_u6D41_u7A0B" class="headerlink" title="bug修复开发流程"></a>bug修复开发流程</h3><ul>
-<li>从master拉取fixbug-*分支,此次我们拉取一个叫做fixbug-1.0.1的分支</li>
-<li>在fixbug-1.0.1进行开发</li>
-<li>将fixbug-1.0.1,发给qa进行测试</li>
-<li>测试无误后,将fixbug-1.0.1进行上线</li>
-<li>上线完毕后<ul>
-<li>fixbug-1.0.1合入到master</li>
-<li>master标记tag 1.0.1</li>
-<li>删除fixbug-1.0.1</li>
-<li>若有release分支存活,则需要对应的develop分支重新合并master,重新发布release分支(主意更新版本号)</li>
-</ul>
-</li>
-</ul>
-<h3 id="u6D4B_u8BD5_u6D41_u7A0B"><a href="#u6D4B_u8BD5_u6D41_u7A0B" class="headerlink" title="测试流程"></a>测试流程</h3><ul>
-<li>测试无误,执行上线流程</li>
-<li>测试有误,重新进行开发流程</li>
-</ul>
-<h3 id="u4E0A_u7EBF_u6D41_u7A0B"><a href="#u4E0A_u7EBF_u6D41_u7A0B" class="headerlink" title="上线流程"></a>上线流程</h3><ul>
-<li>将release-sample-1上线</li>
-<li>上线完毕后<ul>
-<li>release-sample-1合入到master</li>
-<li>master标记版本tag 1.0</li>
-<li>删除release-sample-1分支</li>
-<li>删除branch-sample分支</li>
-</ul>
-</li>
-</ul>
-<h2 id="u6253tag_u89C4_u8303"><a href="#u6253tag_u89C4_u8303" class="headerlink" title="打tag规范"></a>打tag规范</h2><h2 id="u57FA_u7840_u547D_u4EE4"><a href="#u57FA_u7840_u547D_u4EE4" class="headerlink" title="基础命令"></a>基础命令</h2><ul>
-<li><p>查看分支 </p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch</span><br><span class="line"></span>添加-a选项,可查看远程仓库的分支</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建分支</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">branch </span>develop-sample</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建并切换分支</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="tag">b</span> develop-sample</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>切换分支</p>
-<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除分支</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -<span class="keyword">d</span> develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>合并分支</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">merge</span> --<span class="keyword">no</span>-ff develop-<span class="keyword">sample</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>本地分支推送到远程服务器</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">push </span>origin develop-sample</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="u5E38_u89C1_u64CD_u4F5C"><a href="#u5E38_u89C1_u64CD_u4F5C" class="headerlink" title="常见操作"></a>常见操作</h2><ul>
-<li><p>提测前,develop合并master的修改</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">获取远程最新的更改</span><br><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> pull</span><br><span class="line"></span><br><span class="line">合并主干的修改,此处注意diff的出现</span><br><span class="line">git checkout develop-sample</span><br><span class="line">git rebase <span class="literal">master</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>release分支的创建,推送到远程仓库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="operator"><span class="keyword">release</span>-<span class="keyword">sample</span>-<span class="number">1</span> develop-<span class="keyword">sample</span></span><br><span class="line">git push origin <span class="keyword">release</span>-<span class="keyword">sample</span>-<span class="number">1</span></span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>release分支上线后,合并到master,推送到远程仓库</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> merge --no-ff release-sample-<span class="number">1</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">-a</span> <span class="number">1.0</span> -m <span class="string">"release-sample-1"</span></span><br><span class="line">git push origin <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> push origin <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">git push origin --delete release-sample-<span class="number">1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/mysql/standard.html" itemprop="url">
-                  mysql 使用规范
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-14T14:52:13+08:00" content="2015-12-14">
-              2015-12-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/mysql/standard.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/mysql/standard.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="u6CE8_u91CA"><a href="#u6CE8_u91CA" class="headerlink" title="注释"></a>注释</h1><ul>
-<li>字段必须写注释</li>
-<li>表必须写注释</li>
-</ul>
-<h1 id="u7F16_u7801"><a href="#u7F16_u7801" class="headerlink" title="编码"></a>编码</h1><ul>
-<li>建库和建表时必须声明编码</li>
-</ul>
-<h1 id="u547D_u540D"><a href="#u547D_u540D" class="headerlink" title="命名"></a>命名</h1><ul>
-<li>数据库名,表名,字段名 采用匈牙利命名方式</li>
-</ul>
-<h1 id="u7D22_u5F15"><a href="#u7D22_u5F15" class="headerlink" title="索引"></a>索引</h1><ul>
-<li>建表时单独声明,不和字段的声明语句放在一起</li>
-</ul>
-<h1 id="0"><a href="#0" class="headerlink" title="0"></a>0</h1><ul>
-<li>避免使用0表示all,全部等意义</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/mysql/limit.html" itemprop="url">
-                  长度限制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-11-21T10:38:18+08:00" content="2015-11-21">
-              2015-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/mysql/limit.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/mysql/limit.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="u5BF9_u4E8E_u884C_u7684_u9650_u5236"><a href="#u5BF9_u4E8E_u884C_u7684_u9650_u5236" class="headerlink" title="对于行的限制"></a>对于行的限制</h1><ul>
-<li>MySQL要求一个行的定义长度不能超过65535<ul>
-<li>超出长度 会提示将某个字段转化为text or blob</li>
-</ul>
-</li>
-<li>字符串类型字段的最大长度还会受到字符集的影响</li>
-<li>text,blob等字段可以脱离此限制 不会将此些字段计入长度</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/mysql/index.html" itemprop="url">
-                  索引
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-11-21T10:32:31+08:00" content="2015-11-21">
-              2015-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/mysql/index.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/mysql/index.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="u7D22_u5F15"><a href="#u7D22_u5F15" class="headerlink" title="索引"></a>索引</h1><h2 id="u6839_u636E_u533A_u5206_u5EA6_u6765_u5EFA_u7ACB_u7D22_u5F15"><a href="#u6839_u636E_u533A_u5206_u5EA6_u6765_u5EFA_u7ACB_u7D22_u5F15" class="headerlink" title="根据区分度来建立索引"></a>根据区分度来建立索引</h2><ul>
-<li>尽量选择区分度高的列作为索引,区分度的公式是count(distinct col)/count(*)，表示字段不重复的比例</li>
-<li>比例越大我们扫描的记录数越少，唯一键的区分度是1，而一些状态、性别字段可能在大数据面前区分度就是0，</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/article/nginx/pass-variable.html" itemprop="url">
-                  通过fast-cgi传递参数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-11-12T14:25:48+08:00" content="2015-11-12">
-              2015-11-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/article/nginx/pass-variable.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/nginx/pass-variable.html" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="u6BD4_u8F83_u65E7_u7684nginx_u7248_u672C_2C_u53EF_u80FD_u4E0D_u4F1A_u6709path_info_u53C2_u6570"><a href="#u6BD4_u8F83_u65E7_u7684nginx_u7248_u672C_2C_u53EF_u80FD_u4E0D_u4F1A_u6709path_info_u53C2_u6570" class="headerlink" title="比较旧的nginx版本,可能不会有path_info参数"></a>比较旧的nginx版本,可能不会有path_info参数</h1><p>以php中用到的$_SERVER[‘PATH_INFO’]为例</p>
-<p><img src="http://space-img-1.qiniudn.com/person/org/pass.png" alt="示例"></p>
+<p>gdb调试之后也没有任何的头绪<br>随后设置断点，从扩展入手。<br>发现是一个ip扩展(monip)引起的问题,替换为其他方式获取ip后，问题得到解决.<br><em>所以一定要注意第三方扩展是否能在php7下正常工作.</em></p>
+<h2 id="额外做的事情">额外做的事情</h2><p>统一了软件的权限,目录以及配置,便于运维</p>
+<h2 id="成果">成果</h2><h3 id="接口性能提升">接口性能提升</h3><table>
+<thead>
+<tr>
+<th>功能名称</th>
+<th style="text-align:center">php版本</th>
+<th style="text-align:right">qps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上报接口v1</td>
+<td style="text-align:center">5.6</td>
+<td style="text-align:right">5544</td>
+</tr>
+<tr>
+<td>上报接口v1</td>
+<td style="text-align:center">7</td>
+<td style="text-align:right">7309</td>
+</tr>
+<tr>
+<td>上报接口v2</td>
+<td style="text-align:center">5.6</td>
+<td style="text-align:right">3713</td>
+</tr>
+<tr>
+<td>上报接口v2</td>
+<td style="text-align:center">7</td>
+<td style="text-align:right">5240</td>
+</tr>
+</tbody>
+</table>
+<p>上报接口v1提升了32%的性能,上报接口v2提升了41%的性能</p>
+<h3 id="服务器成本降低">服务器成本降低</h3><p>服务器顺利降低配置, 成本降低了1/3</p>
 
             
           </span>
@@ -1311,7 +396,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1325,7 +410,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -1404,28 +489,11 @@
 
   
     
+    
 
   
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"bloodynumen"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-    
-     
 
 
-    
   
 
   
